@@ -36,7 +36,7 @@ public class LogInScreen extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(150, 235, 240));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Marinos\\Downloads\\A4AD5659B5D44610AB530DF0BAB8279D.jpeg")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/A4AD5659B5D44610AB530DF0BAB8279D.jpeg"))); // NOI18N
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));

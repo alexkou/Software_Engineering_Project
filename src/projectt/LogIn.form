@@ -65,18 +65,16 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPasswordField1" alignment="1" min="-2" pref="128" max="-2" attributes="0"/>
-                      <Component id="jTextField2" alignment="1" min="-2" pref="128" max="-2" attributes="0"/>
-                      <Component id="jTextField1" alignment="1" min="-2" pref="128" max="-2" attributes="0"/>
-                      <Component id="jTextField3" alignment="1" min="-2" pref="128" max="-2" attributes="0"/>
-                      <Component id="jButton2" alignment="1" min="-2" pref="81" max="-2" attributes="0"/>
-                      <Component id="jTextField5" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                          <Component id="jPasswordField1" alignment="1" min="-2" pref="128" max="-2" attributes="0"/>
+                          <Component id="jTextField2" alignment="1" min="-2" pref="128" max="-2" attributes="0"/>
+                          <Component id="jTextField1" alignment="1" min="-2" pref="128" max="-2" attributes="0"/>
+                          <Component id="jTextField3" alignment="1" min="-2" pref="128" max="-2" attributes="0"/>
+                          <Component id="jButton2" alignment="1" min="-2" pref="81" max="-2" attributes="0"/>
+                          <Component id="jTextField5" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="jButton1" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jButton1" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -111,7 +109,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Marinos\Downloads\A4AD5659B5D44610AB530DF0BAB8279D.jpeg"/>
+              <Image iconType="3" name="/A4AD5659B5D44610AB530DF0BAB8279D.jpeg"/>
             </Property>
           </Properties>
         </Component>
