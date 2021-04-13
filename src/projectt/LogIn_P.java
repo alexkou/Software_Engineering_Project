@@ -39,7 +39,7 @@ public class LogIn_P extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(150, 235, 240));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Marinos\\Downloads\\A4AD5659B5D44610AB530DF0BAB8279D.jpeg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/A4AD5659B5D44610AB530DF0BAB8279D.jpeg"))); // NOI18N
 
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
