@@ -5,12 +5,18 @@
  */
 
 package projectt;
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 /**
  *
  * @author Marinos
  */
 public class LogIn_P extends javax.swing.JFrame {
+    
+    static final String databaseURL = "jdbc:mysql://127.0.0.1:3306/ProjectT?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    static final String username = "root";
+    static final String password = "";
 
     /** Creates new form LogIn_P */
     public LogIn_P() {
