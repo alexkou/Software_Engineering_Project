@@ -24,3 +24,8 @@ hs_err_pid*
 /nbproject/private/
 /dist/
 /build/
+!/lib/jiconfont-1.0.0.jar
+!/lib/jiconfont-swing-1.0.1.jar
+!/lib/mysql-connector-java-8.0.22.jar
+!/lib/rs2xml.jar
+/Classes/
