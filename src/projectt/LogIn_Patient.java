@@ -6,7 +6,10 @@
 package projectt;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -211,7 +214,40 @@ public class LogIn_Patient extends javax.swing.JFrame {
 
     private void connect_patientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connect_patientActionPerformed
         
-        new Patient().setVisible(true);
+        try{
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+            
+            String username = Username.getText();
+            String password = String.valueOf(Password.getPassword());
+            
+            String query = "SELECT username,password,user_type FROM user WHERE username='"+username+"' AND password='"+password+"' ";
+            PreparedStatement pst = con.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+            
+            if(rs.next()) {
+                
+                String user_type = rs.getString("user_type");
+                
+                if (user_type.equals("patient")) {
+                    dispose();
+                    new Patient().setVisible(true);
+                }
+
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Wrong username or password!");
+                Username.setText("");
+                Password.setText("");
+            }
+            
+            con.close();
+            
+        } catch(Exception e){
+             JOptionPane.showMessageDialog(null,e);  
+        }
+        
     }//GEN-LAST:event_connect_patientActionPerformed
 
     /**

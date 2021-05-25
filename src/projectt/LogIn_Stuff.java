@@ -5,22 +5,18 @@
  */
 
 package projectt;
+import icons.FontAwesome;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import net.proteanit.sql.DbUtils;
 /**
  *
  * @author Marinos
  */
 public class LogIn_Stuff extends javax.swing.JFrame {
-    
-    static final String databaseURL = "jdbc:mysql://127.0.0.1:3306/ProjectT?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    static final String username = "root";
-    static final String password = "";
 
     /** Creates new form LogIn_P */
     public LogIn_Stuff() {
@@ -37,20 +33,20 @@ public class LogIn_Stuff extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
         Password = new javax.swing.JPasswordField();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        password_text = new javax.swing.JTextField();
+        username_text = new javax.swing.JTextField();
         Username = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jTextField4 = new javax.swing.JTextField();
+        stuff_text = new javax.swing.JTextField();
         connect_stuff = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(150, 235, 240));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/A4AD5659B5D44610AB530DF0BAB8279D.jpeg"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/A4AD5659B5D44610AB530DF0BAB8279D.jpeg"))); // NOI18N
 
         Password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,28 +54,28 @@ public class LogIn_Stuff extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setBackground(new java.awt.Color(150, 235, 240));
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText("Password");
-        jTextField1.setBorder(null);
-        jTextField1.setFocusable(false);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        password_text.setBackground(new java.awt.Color(150, 235, 240));
+        password_text.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        password_text.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        password_text.setText("Password");
+        password_text.setBorder(null);
+        password_text.setFocusable(false);
+        password_text.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                password_textActionPerformed(evt);
             }
         });
 
-        jTextField2.setBackground(new java.awt.Color(150, 235, 240));
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField2.setText("Username");
-        jTextField2.setBorder(null);
-        jTextField2.setFocusable(false);
-        jTextField2.setMinimumSize(new java.awt.Dimension(1, 19));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        username_text.setBackground(new java.awt.Color(150, 235, 240));
+        username_text.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        username_text.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        username_text.setText("Username");
+        username_text.setBorder(null);
+        username_text.setFocusable(false);
+        username_text.setMinimumSize(new java.awt.Dimension(1, 19));
+        username_text.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                username_textActionPerformed(evt);
             }
         });
 
@@ -98,12 +94,17 @@ public class LogIn_Stuff extends javax.swing.JFrame {
             }
         });
 
-        jTextField4.setBackground(new java.awt.Color(150, 235, 240));
-        jTextField4.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField4.setText("Προσωπικό Νοσοκομείου");
-        jTextField4.setBorder(null);
-        jTextField4.setFocusable(false);
+        stuff_text.setBackground(new java.awt.Color(150, 235, 240));
+        stuff_text.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        stuff_text.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        stuff_text.setText("Προσωπικό Νοσοκομείου");
+        stuff_text.setBorder(null);
+        stuff_text.setFocusable(false);
+        stuff_text.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stuff_textActionPerformed(evt);
+            }
+        });
 
         connect_stuff.setBackground(new java.awt.Color(0, 0, 0));
         connect_stuff.setForeground(new java.awt.Color(255, 255, 255));
@@ -121,15 +122,15 @@ public class LogIn_Stuff extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(360, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField4)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(stuff_text)
+                    .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 360, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                    .addComponent(username_text, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                     .addComponent(Password)
-                    .addComponent(jTextField1)
+                    .addComponent(password_text)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Username)
                     .addComponent(connect_stuff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -139,15 +140,15 @@ public class LogIn_Stuff extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(96, 96, 96)
-                .addComponent(jLabel1)
+                .addComponent(logo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(stuff_text, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(username_text, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(password_text, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -175,9 +176,9 @@ public class LogIn_Stuff extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void username_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username_textActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_username_textActionPerformed
 
     private void PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordActionPerformed
         // TODO add your handling code here:
@@ -189,26 +190,45 @@ public class LogIn_Stuff extends javax.swing.JFrame {
 
     private void connect_stuffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connect_stuffActionPerformed
         // TODO add your handling code here:
-    try{
+    try{  
             
             Class.forName("com.mysql.cj.jdbc.Driver");
-            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/health", "root", "");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
             
             String username = Username.getText();
             String password = String.valueOf(Password.getPassword());
             
-            String sql = "SELECT * FROM sys_user WHERE user_name='"+username+"' AND password='"+password+"' ";
-            PreparedStatement pst = con.prepareStatement(sql);
+            String query = "SELECT username,password,user_type FROM user WHERE username='"+username+"' AND password='"+password+"' ";
+            PreparedStatement pst = con.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             
             if(rs.next()) {
                 
-                dispose();
-                new Admin().setVisible(true);
+                String user_type = rs.getString("user_type");
+                
+                if (user_type.equals("doctor")) {
+                    dispose();
+                    new Doctor().setVisible(true);
+                }
+                
+                else if(user_type.equals("admin")) {
+                    dispose();
+                    new Admin().setVisible(true);
+                }
+                
+                else if(user_type.equals("reception")) {
+                    dispose();
+                    new Reception().setVisible(true);
+                }
+                
+                else if(user_type.equals("lab")) {
+                    dispose();
+                    new Lab_analyst().setVisible(true);
+                }
                 
             }
             else {
-                JOptionPane.showMessageDialog(this, "Wrong username or password");
+                JOptionPane.showMessageDialog(this, "Wrong username or password!");
                 Username.setText("");
                 Password.setText("");
             }
@@ -221,9 +241,13 @@ public class LogIn_Stuff extends javax.swing.JFrame {
 
     }//GEN-LAST:event_connect_stuffActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void password_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password_textActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_password_textActionPerformed
+
+    private void stuff_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stuff_textActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_stuff_textActionPerformed
 
     /**
      * @param args the command line arguments
@@ -266,11 +290,11 @@ public class LogIn_Stuff extends javax.swing.JFrame {
     private javax.swing.JTextField Username;
     private javax.swing.JButton connect_stuff;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel logo;
+    private javax.swing.JTextField password_text;
+    private javax.swing.JTextField stuff_text;
+    private javax.swing.JTextField username_text;
     // End of variables declaration//GEN-END:variables
 
 }
