@@ -4,26 +4,28 @@
  * and open the template in the editor.
  */
 package projectt;
+
+import icons.FontAwesome;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import jiconfont.swing.IconFontSwing;
+import java.awt.Color;
 
 /**
  *
  * @author Marinos
  */
 public class LogIn_Patient extends javax.swing.JFrame {
-    
-    static final String databaseURL = "jdbc:mysql://127.0.0.1:3306/ProjectT?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    static final String username = "root";
-    static final String password = "";
+
     /**
      * Creates new form LogIn
      */
     public LogIn_Patient() {
+        IconFontSwing.register(FontAwesome.getIconFont());        
         initComponents();
     }
 
@@ -47,6 +49,7 @@ public class LogIn_Patient extends javax.swing.JFrame {
         sign_up = new javax.swing.JButton();
         jTextField5 = new javax.swing.JTextField();
         connect_patient = new javax.swing.JButton();
+        back_Button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,6 +128,16 @@ public class LogIn_Patient extends javax.swing.JFrame {
             }
         });
 
+        back_Button.setIcon(IconFontSwing.buildIcon(FontAwesome.ARROW_CIRCLE_LEFT, 50, Color.black));
+        back_Button.setBorderPainted(false);
+        back_Button.setContentAreaFilled(false);
+        back_Button.setOpaque(false);
+        back_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back_ButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -151,11 +164,17 @@ public class LogIn_Patient extends javax.swing.JFrame {
                         .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING))
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(back_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(96, 96, 96)
+                .addGap(15, 15, 15)
+                .addComponent(back_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -175,7 +194,7 @@ public class LogIn_Patient extends javax.swing.JFrame {
                 .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sign_up, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -250,6 +269,12 @@ public class LogIn_Patient extends javax.swing.JFrame {
         
     }//GEN-LAST:event_connect_patientActionPerformed
 
+    private void back_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_ButtonActionPerformed
+        
+        dispose();
+        new Choose().setVisible(true);
+    }//GEN-LAST:event_back_ButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -289,6 +314,7 @@ public class LogIn_Patient extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField Password;
     private javax.swing.JTextField Username;
+    private javax.swing.JButton back_Button;
     private javax.swing.JButton connect_patient;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

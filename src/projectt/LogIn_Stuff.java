@@ -12,6 +12,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import jiconfont.swing.IconFontSwing;
+import java.awt.Color;
+
 /**
  *
  * @author Marinos
@@ -20,6 +23,7 @@ public class LogIn_Stuff extends javax.swing.JFrame {
 
     /** Creates new form LogIn_P */
     public LogIn_Stuff() {
+        IconFontSwing.register(FontAwesome.getIconFont());                
         initComponents();
     }
 
@@ -41,6 +45,7 @@ public class LogIn_Stuff extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         stuff_text = new javax.swing.JTextField();
         connect_stuff = new javax.swing.JButton();
+        back_Button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,6 +120,15 @@ public class LogIn_Stuff extends javax.swing.JFrame {
             }
         });
 
+        back_Button.setIcon(IconFontSwing.buildIcon(FontAwesome.ARROW_CIRCLE_LEFT, 50, Color.black));
+        back_Button.setBorderPainted(false);
+        back_Button.setContentAreaFilled(false);
+        back_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back_ButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -135,11 +149,17 @@ public class LogIn_Stuff extends javax.swing.JFrame {
                     .addComponent(Username)
                     .addComponent(connect_stuff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(back_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(96, 96, 96)
+                .addGap(15, 15, 15)
+                .addComponent(back_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
                 .addComponent(logo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(stuff_text, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -249,6 +269,12 @@ public class LogIn_Stuff extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_stuff_textActionPerformed
 
+    private void back_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_ButtonActionPerformed
+
+        dispose();
+        new Choose().setVisible(true);
+    }//GEN-LAST:event_back_ButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -288,6 +314,7 @@ public class LogIn_Stuff extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField Password;
     private javax.swing.JTextField Username;
+    private javax.swing.JButton back_Button;
     private javax.swing.JButton connect_stuff;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
