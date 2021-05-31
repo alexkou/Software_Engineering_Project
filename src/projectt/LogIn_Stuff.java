@@ -62,7 +62,7 @@ public class LogIn_Stuff extends javax.swing.JFrame {
         password_text.setBackground(new java.awt.Color(150, 235, 240));
         password_text.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         password_text.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        password_text.setText("Password");
+        password_text.setText("Συνθηματικό");
         password_text.setBorder(null);
         password_text.setFocusable(false);
         password_text.addActionListener(new java.awt.event.ActionListener() {
@@ -74,7 +74,7 @@ public class LogIn_Stuff extends javax.swing.JFrame {
         username_text.setBackground(new java.awt.Color(150, 235, 240));
         username_text.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         username_text.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        username_text.setText("Username");
+        username_text.setText("Όνομα Χρήστη");
         username_text.setBorder(null);
         username_text.setFocusable(false);
         username_text.setMinimumSize(new java.awt.Dimension(1, 19));
@@ -248,7 +248,7 @@ public class LogIn_Stuff extends javax.swing.JFrame {
                 
             }
             else {
-                JOptionPane.showMessageDialog(this, "Wrong username or password!");
+                JOptionPane.showMessageDialog(this, "Λανθασμένο όνομα χρήστη ή συνθηματικό!");
                 Username.setText("");
                 Password.setText("");
             }
