@@ -60,7 +60,7 @@ public class LogIn_Patient extends javax.swing.JFrame {
         jTextField1.setBackground(new java.awt.Color(150, 235, 240));
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText("Username");
+        jTextField1.setText("Όνομα Χρήστη");
         jTextField1.setBorder(null);
         jTextField1.setFocusable(false);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -72,7 +72,7 @@ public class LogIn_Patient extends javax.swing.JFrame {
         jTextField3.setBackground(new java.awt.Color(150, 235, 240));
         jTextField3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField3.setText("Password");
+        jTextField3.setText("Συνθηματικό");
         jTextField3.setBorder(null);
         jTextField3.setFocusable(false);
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
@@ -149,7 +149,7 @@ public class LogIn_Patient extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(360, Short.MAX_VALUE)
                         .addComponent(jLabel1)))
-                .addContainerGap(361, Short.MAX_VALUE))
+                .addContainerGap(360, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -223,7 +223,8 @@ public class LogIn_Patient extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void sign_upActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sign_upActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        new Register_Form().setVisible(true);
     }//GEN-LAST:event_sign_upActionPerformed
 
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
@@ -255,7 +256,7 @@ public class LogIn_Patient extends javax.swing.JFrame {
 
             }
             else {
-                JOptionPane.showMessageDialog(this, "Wrong username or password!");
+                JOptionPane.showMessageDialog(this, "Λανθασμένο όνομα χρήστη ή κωδικός!");
                 Username.setText("");
                 Password.setText("");
             }

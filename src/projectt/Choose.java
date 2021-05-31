@@ -13,10 +13,6 @@ import java.sql.SQLException;
  * @author Marinos
  */
 public class Choose extends javax.swing.JFrame {
-    
-    static final String databaseURL = "jdbc:mysql://127.0.0.1:3306/ProjectT?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    static final String username = "root";
-    static final String password = "";
 
     /**
      * Creates new form Choose
