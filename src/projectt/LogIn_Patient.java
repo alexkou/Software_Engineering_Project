@@ -131,7 +131,6 @@ public class LogIn_Patient extends javax.swing.JFrame {
         back_Button.setIcon(IconFontSwing.buildIcon(FontAwesome.ARROW_CIRCLE_LEFT, 50, Color.black));
         back_Button.setBorderPainted(false);
         back_Button.setContentAreaFilled(false);
-        back_Button.setOpaque(false);
         back_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 back_ButtonActionPerformed(evt);
@@ -150,7 +149,7 @@ public class LogIn_Patient extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(360, Short.MAX_VALUE)
                         .addComponent(jLabel1)))
-                .addContainerGap(360, Short.MAX_VALUE))
+                .addContainerGap(361, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
