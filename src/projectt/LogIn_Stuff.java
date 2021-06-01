@@ -241,7 +241,7 @@ public class LogIn_Stuff extends javax.swing.JFrame {
                     new Reception().setVisible(true);
                 }
                 
-                else if(user_type.equals("lab")) {
+                else if(user_type.equals("lab analyst")) {
                     dispose();
                     new Lab_analyst().setVisible(true);
                 }
