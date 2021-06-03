@@ -95,6 +95,11 @@ public class Doctor extends javax.swing.JFrame {
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Τμήμα Προμηθειών");
         jButton3.setBorder(null);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         Button_signout.setIcon(IconFontSwing.buildIcon(FontAwesome.SIGN_OUT, 50, Color.black));
         Button_signout.setBorderPainted(false);
@@ -200,6 +205,12 @@ public class Doctor extends javax.swing.JFrame {
         dispose();
         new Doctor_Prescription().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new Supplies().setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
