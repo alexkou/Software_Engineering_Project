@@ -158,6 +158,8 @@ public class Reception extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        dispose();
+        new Reception_Appointment().setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void Button_signoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_signoutActionPerformed
