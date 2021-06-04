@@ -41,7 +41,7 @@ public class Doctor_Patients extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         patient_name = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        search_button = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -50,7 +50,7 @@ public class Doctor_Patients extends javax.swing.JFrame {
         exams_table = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         diagnosis_text = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        save_Diagnosis = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,13 +76,13 @@ public class Doctor_Patients extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Όνομα Ασθενή");
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Αναζήτηση");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        search_button.setBackground(new java.awt.Color(0, 0, 0));
+        search_button.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        search_button.setForeground(new java.awt.Color(255, 255, 255));
+        search_button.setText("Αναζήτηση");
+        search_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                search_buttonActionPerformed(evt);
             }
         });
 
@@ -124,13 +124,13 @@ public class Doctor_Patients extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Διάγνωση", jScrollPane3);
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Αποθήκευση Διάγνωσης");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        save_Diagnosis.setBackground(new java.awt.Color(0, 0, 0));
+        save_Diagnosis.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        save_Diagnosis.setForeground(new java.awt.Color(255, 255, 255));
+        save_Diagnosis.setText("Αποθήκευση Διάγνωσης");
+        save_Diagnosis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                save_DiagnosisActionPerformed(evt);
             }
         });
 
@@ -150,7 +150,7 @@ public class Doctor_Patients extends javax.swing.JFrame {
                                 .addContainerGap())
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(save_Diagnosis, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,7 +161,7 @@ public class Doctor_Patients extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(patient_name, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(40, 40, 40)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(search_button, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
@@ -179,7 +179,7 @@ public class Doctor_Patients extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(patient_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(search_button, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -187,7 +187,7 @@ public class Doctor_Patients extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(48, 48, 48)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(save_Diagnosis, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3)))
                 .addContainerGap())
@@ -217,7 +217,7 @@ public class Doctor_Patients extends javax.swing.JFrame {
         new Doctor().setVisible(true);
     }//GEN-LAST:event_back_Button1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void search_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_buttonActionPerformed
         
         if(patient_name.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this,("Συμπληρώστε το όνομα του ασθενή!"));
@@ -225,11 +225,11 @@ public class Doctor_Patients extends javax.swing.JFrame {
         }
         else {
             try{
-
-                Class.forName("com.mysql.cj.jdbc.Driver");
                 java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+                LogIn_Stuff login_stuff = new LogIn_Stuff();
+                String user_id = login_stuff.stuff_userId();                
                 String fullname = patient_name.getText();
-                String query1 = "SELECT CONCAT(first_name,' ',last_name) AS Ονοματεπώνυμο, textbox AS Διάγνωση, DATE(diagnosis_date) AS Ημερομηνία FROM diagnosis INNER JOIN user on patient_id = user_id WHERE last_name ='"+fullname+"' ";
+                String query1 = "SELECT CONCAT(first_name,' ',last_name) AS Ονοματεπώνυμο, textbox AS Διάγνωση, DATE(diagnosis_date) AS Ημερομηνία FROM diagnosis INNER JOIN user on patient_id = user_id WHERE last_name ='"+fullname+"' AND doctor_id='"+user_id+"' ";
                 PreparedStatement pst = con.prepareStatement(query1);
                 ResultSet rs = pst.executeQuery();
 
@@ -259,9 +259,9 @@ public class Doctor_Patients extends javax.swing.JFrame {
             }            
      }
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_search_buttonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void save_DiagnosisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_DiagnosisActionPerformed
         
         if(patient_name.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this,("Συμπληρώστε το όνομα του ασθενή!"));
@@ -274,11 +274,12 @@ public class Doctor_Patients extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Παρακαλώ συμπληρώστε το πεδίο της διάγνωσης!"); 
                 } 
                 else {
-                    Class.forName("com.mysql.cj.jdbc.Driver");
                     java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+                    LogIn_Stuff login_stuff = new LogIn_Stuff();
+                    String user_id = login_stuff.stuff_userId();                     
                     String fullname = patient_name.getText();
                     String diagnosis = diagnosis_text.getText().trim();
-                    String query = "INSERT INTO diagnosis VALUES(NULL, (SELECT doctor_id FROM doctor), (SELECT user_id FROM user WHERE last_name ='"+fullname+"'), '"+diagnosis+"', DEFAULT)";
+                    String query = "INSERT INTO diagnosis VALUES(NULL, (SELECT doctor_id FROM doctor WHERE doctor_id='"+user_id+"'), (SELECT user_id FROM user WHERE last_name ='"+fullname+"'), '"+diagnosis+"', DEFAULT)";
                     PreparedStatement pst = con.prepareStatement(query);
                     pst.executeUpdate(); 
 
@@ -290,7 +291,7 @@ public class Doctor_Patients extends javax.swing.JFrame {
             }
         }
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_save_DiagnosisActionPerformed
 
     /**
      * @param args the command line arguments
@@ -333,8 +334,6 @@ public class Doctor_Patients extends javax.swing.JFrame {
     private javax.swing.JTextArea diagnosis_text;
     private javax.swing.JTable exams_table;
     private javax.swing.JTable history_table;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -345,5 +344,7 @@ public class Doctor_Patients extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField patient_name;
+    private javax.swing.JButton save_Diagnosis;
+    private javax.swing.JButton search_button;
     // End of variables declaration//GEN-END:variables
 }

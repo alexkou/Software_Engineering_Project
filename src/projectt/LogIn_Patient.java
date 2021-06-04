@@ -21,6 +21,8 @@ import java.awt.Color;
  */
 public class LogIn_Patient extends javax.swing.JFrame {
 
+    private static String patient_userId;
+
     /**
      * Creates new form LogIn
      */
@@ -39,15 +41,14 @@ public class LogIn_Patient extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         Username = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        patient_text = new javax.swing.JTextField();
         Password = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
         sign_up = new javax.swing.JButton();
-        jTextField5 = new javax.swing.JTextField();
+        new_patient = new javax.swing.JTextField();
         connect_patient = new javax.swing.JButton();
         back_Button = new javax.swing.JButton();
 
@@ -55,7 +56,7 @@ public class LogIn_Patient extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(150, 235, 240));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/A4AD5659B5D44610AB530DF0BAB8279D.jpeg"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/A4AD5659B5D44610AB530DF0BAB8279D.jpeg"))); // NOI18N
 
         jTextField1.setBackground(new java.awt.Color(150, 235, 240));
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -63,11 +64,7 @@ public class LogIn_Patient extends javax.swing.JFrame {
         jTextField1.setText("Όνομα Χρήστη");
         jTextField1.setBorder(null);
         jTextField1.setFocusable(false);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
+
 
         jTextField3.setBackground(new java.awt.Color(150, 235, 240));
         jTextField3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -75,27 +72,14 @@ public class LogIn_Patient extends javax.swing.JFrame {
         jTextField3.setText("Συνθηματικό");
         jTextField3.setBorder(null);
         jTextField3.setFocusable(false);
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
 
-        jTextField4.setBackground(new java.awt.Color(150, 235, 240));
-        jTextField4.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField4.setText("Ασθενής Νοσοκομείου");
-        jTextField4.setBorder(null);
-        jTextField4.setFocusable(false);
 
-        jButton1.setBorder(null);
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        patient_text.setBackground(new java.awt.Color(150, 235, 240));
+        patient_text.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        patient_text.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        patient_text.setText("Ασθενής Νοσοκομείου");
+        patient_text.setBorder(null);
+        patient_text.setFocusable(false);
 
         sign_up.setBackground(new java.awt.Color(0, 0, 0));
         sign_up.setForeground(new java.awt.Color(255, 255, 255));
@@ -108,16 +92,12 @@ public class LogIn_Patient extends javax.swing.JFrame {
             }
         });
 
-        jTextField5.setBackground(new java.awt.Color(150, 235, 240));
-        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jTextField5.setText("Δεν έχετε λογαριασμό;");
-        jTextField5.setBorder(null);
-        jTextField5.setFocusable(false);
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
+        new_patient.setBackground(new java.awt.Color(150, 235, 240));
+        new_patient.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        new_patient.setText("Δεν έχετε λογαριασμό;");
+        new_patient.setBorder(null);
+        new_patient.setFocusable(false);
+
 
         connect_patient.setBackground(new java.awt.Color(0, 0, 0));
         connect_patient.setForeground(new java.awt.Color(255, 255, 255));
@@ -145,23 +125,22 @@ public class LogIn_Patient extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(patient_text, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(360, Short.MAX_VALUE)
-                        .addComponent(jLabel1)))
+                        .addComponent(logo)))
                 .addContainerGap(360, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(sign_up, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(Password, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(connect_patient, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                         .addComponent(Username, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jTextField1)
                         .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(new_patient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
@@ -174,9 +153,9 @@ public class LogIn_Patient extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(back_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
+                .addComponent(logo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(patient_text, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -186,11 +165,10 @@ public class LogIn_Patient extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(connect_patient, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(new_patient, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sign_up, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(22, Short.MAX_VALUE))
@@ -210,67 +188,56 @@ public class LogIn_Patient extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void sign_upActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sign_upActionPerformed
         dispose();
         new Register_Form().setVisible(true);
     }//GEN-LAST:event_sign_upActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    private void userVerification() {
+        try {
 
-    private void connect_patientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connect_patientActionPerformed
-        
-        try{
-            
-            Class.forName("com.mysql.cj.jdbc.Driver");
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-            
+
             String username = Username.getText();
             String password = String.valueOf(Password.getPassword());
-            
-            String query = "SELECT username,password,user_type FROM user WHERE username='"+username+"' AND password='"+password+"' ";
+
+            String query = "SELECT user_id, user_type FROM user WHERE username='" + username + "' AND password='" + password + "' ";
             PreparedStatement pst = con.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
-            
-            if(rs.next()) {
-                
+
+            if (rs.next()) {
+
                 String user_type = rs.getString("user_type");
-                
+                String user_id = rs.getString("user_id");
+                LogIn_Patient.patient_userId = user_id;
+
                 if (user_type.equals("patient")) {
                     dispose();
                     new Patient().setVisible(true);
                 }
 
-            }
-            else {
+            } else {
                 JOptionPane.showMessageDialog(this, "Λανθασμένο όνομα χρήστη ή κωδικός!");
                 Username.setText("");
                 Password.setText("");
             }
-            
+
             con.close();
-            
-        } catch(Exception e){
-             JOptionPane.showMessageDialog(null,e);  
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
-        
+    }
+    
+    public String patient_userId() {
+        return LogIn_Patient.patient_userId;
+    }
+    
+    private void connect_patientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connect_patientActionPerformed
+       userVerification();
     }//GEN-LAST:event_connect_patientActionPerformed
 
     private void back_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_ButtonActionPerformed
-        
         dispose();
         new Choose().setVisible(true);
     }//GEN-LAST:event_back_ButtonActionPerformed
@@ -316,13 +283,12 @@ public class LogIn_Patient extends javax.swing.JFrame {
     private javax.swing.JTextField Username;
     private javax.swing.JButton back_Button;
     private javax.swing.JButton connect_patient;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JLabel logo;
+    private javax.swing.JTextField new_patient;
+    private javax.swing.JTextField patient_text;
     private javax.swing.JButton sign_up;
     // End of variables declaration//GEN-END:variables
 }

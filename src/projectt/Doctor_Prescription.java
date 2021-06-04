@@ -211,10 +211,10 @@ public class Doctor_Prescription extends javax.swing.JFrame {
                 String instructions_text = instructions.getText().trim();
                 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");      
-
-            String query = "INSERT INTO prescription VALUES(NULL, (SELECT doctor_id FROM doctor), (SELECT user_id FROM user WHERE last_name ='"+fullname+"'), '"+medicines+"', '"+instructions_text+"')";
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");   
+            LogIn_Stuff login_stuff = new LogIn_Stuff();
+            String user_id = login_stuff.stuff_userId();
+            String query = "INSERT INTO prescription VALUES(NULL, (SELECT doctor_id FROM doctor WHERE doctor_id= '"+user_id+"'), (SELECT user_id FROM user WHERE last_name ='"+fullname+"'), '"+medicines+"', '"+instructions_text+"')";
             PreparedStatement pst = con.prepareStatement(query);
             pst.executeUpdate();             
             

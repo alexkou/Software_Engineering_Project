@@ -6,11 +6,9 @@
 
 package projectt;
 import icons.FontAwesome;
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import jiconfont.swing.IconFontSwing;
 import java.awt.Color;
@@ -20,6 +18,8 @@ import java.awt.Color;
  * @author Marinos
  */
 public class LogIn_Stuff extends javax.swing.JFrame {
+
+    private static String stuff_userId;
 
     /** Creates new form LogIn_P */
     public LogIn_Stuff() {
@@ -42,7 +42,6 @@ public class LogIn_Stuff extends javax.swing.JFrame {
         password_text = new javax.swing.JTextField();
         username_text = new javax.swing.JTextField();
         Username = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         stuff_text = new javax.swing.JTextField();
         connect_stuff = new javax.swing.JButton();
         back_Button = new javax.swing.JButton();
@@ -53,11 +52,6 @@ public class LogIn_Stuff extends javax.swing.JFrame {
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/A4AD5659B5D44610AB530DF0BAB8279D.jpeg"))); // NOI18N
 
-        Password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PasswordActionPerformed(evt);
-            }
-        });
 
         password_text.setBackground(new java.awt.Color(150, 235, 240));
         password_text.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -65,11 +59,7 @@ public class LogIn_Stuff extends javax.swing.JFrame {
         password_text.setText("Συνθηματικό");
         password_text.setBorder(null);
         password_text.setFocusable(false);
-        password_text.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                password_textActionPerformed(evt);
-            }
-        });
+
 
         username_text.setBackground(new java.awt.Color(150, 235, 240));
         username_text.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -78,26 +68,9 @@ public class LogIn_Stuff extends javax.swing.JFrame {
         username_text.setBorder(null);
         username_text.setFocusable(false);
         username_text.setMinimumSize(new java.awt.Dimension(1, 19));
-        username_text.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                username_textActionPerformed(evt);
-            }
-        });
 
         Username.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        Username.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UsernameActionPerformed(evt);
-            }
-        });
 
-        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         stuff_text.setBackground(new java.awt.Color(150, 235, 240));
         stuff_text.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -105,11 +78,6 @@ public class LogIn_Stuff extends javax.swing.JFrame {
         stuff_text.setText("Προσωπικό Νοσοκομείου");
         stuff_text.setBorder(null);
         stuff_text.setFocusable(false);
-        stuff_text.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                stuff_textActionPerformed(evt);
-            }
-        });
 
         connect_stuff.setBackground(new java.awt.Color(0, 0, 0));
         connect_stuff.setForeground(new java.awt.Color(255, 255, 255));
@@ -145,7 +113,6 @@ public class LogIn_Stuff extends javax.swing.JFrame {
                     .addComponent(username_text, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                     .addComponent(Password)
                     .addComponent(password_text)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Username)
                     .addComponent(connect_stuff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -172,7 +139,6 @@ public class LogIn_Stuff extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(connect_stuff, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54))
@@ -192,85 +158,66 @@ public class LogIn_Stuff extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void userVerification() {
 
-    private void username_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username_textActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_username_textActionPerformed
+        try {
 
-    private void PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PasswordActionPerformed
-
-    private void UsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_UsernameActionPerformed
-
-    private void connect_stuffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connect_stuffActionPerformed
-        // TODO add your handling code here:
-    try{  
-            
-            Class.forName("com.mysql.cj.jdbc.Driver");
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-            
+
             String username = Username.getText();
             String password = String.valueOf(Password.getPassword());
-            
-            String query = "SELECT username,password,user_type FROM user WHERE username='"+username+"' AND password='"+password+"' ";
+
+            String query = "SELECT user_id,user_type FROM user WHERE username='" + username + "' AND password='" + password + "' ";
             PreparedStatement pst = con.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
-            
-            if(rs.next()) {
-                
+
+            if (rs.next()) {
+
                 String user_type = rs.getString("user_type");
-                
-                if (user_type.equals("doctor")) {
-                    dispose();
-                    new Doctor().setVisible(true);
+                String user_id = rs.getString("user_id");
+                LogIn_Stuff.stuff_userId = user_id;
+
+                switch (user_type) {
+                    case "doctor":
+                        dispose();
+                        new Doctor().setVisible(true);
+                        break;
+                    case "admin":
+                        dispose();
+                        new Admin().setVisible(true);
+                        break;
+                    case "reception":
+                        dispose();
+                        new Reception().setVisible(true);
+                        break;
+                    case "lab analyst":
+                        dispose();
+                        new Lab_analyst().setVisible(true);
+                        break;
+                    default:
+                        break;
                 }
-                
-                else if(user_type.equals("admin")) {
-                    dispose();
-                    new Admin().setVisible(true);
-                }
-                
-                else if(user_type.equals("reception")) {
-                    dispose();
-                    new Reception().setVisible(true);
-                }
-                
-                else if(user_type.equals("lab analyst")) {
-                    dispose();
-                    new Lab_analyst().setVisible(true);
-                }
-                
-            }
-            else {
+            } else {
                 JOptionPane.showMessageDialog(this, "Λανθασμένο όνομα χρήστη ή συνθηματικό!");
                 Username.setText("");
                 Password.setText("");
             }
-            
             con.close();
-            
-        } catch(Exception e){
-             JOptionPane.showMessageDialog(null,e);  
-        }
 
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    public String stuff_userId() {
+        return LogIn_Stuff.stuff_userId;
+    }
+    
+    private void connect_stuffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connect_stuffActionPerformed
+        userVerification();
     }//GEN-LAST:event_connect_stuffActionPerformed
 
-    private void password_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password_textActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_password_textActionPerformed
-
-    private void stuff_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stuff_textActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_stuff_textActionPerformed
-
     private void back_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_ButtonActionPerformed
-
         dispose();
         new Choose().setVisible(true);
     }//GEN-LAST:event_back_ButtonActionPerformed
@@ -316,7 +263,6 @@ public class LogIn_Stuff extends javax.swing.JFrame {
     private javax.swing.JTextField Username;
     private javax.swing.JButton back_Button;
     private javax.swing.JButton connect_stuff;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logo;
     private javax.swing.JTextField password_text;
