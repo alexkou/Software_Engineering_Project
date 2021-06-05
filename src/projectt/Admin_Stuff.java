@@ -5,6 +5,14 @@
  */
 package projectt;
 
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Marinos
@@ -138,6 +146,11 @@ public class Admin_Stuff extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Γιατροί");
         jButton2.setBorder(null);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(0, 0, 0));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
@@ -152,10 +165,20 @@ public class Admin_Stuff extends javax.swing.JFrame {
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Γραμματεία");
         jButton5.setBorder(null);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Εργαστήριο");
         jButton6.setBorder(null);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -294,6 +317,126 @@ public class Admin_Stuff extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        try
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+            String query1 = "SELECT * FROM user WHERE user_type='lab analyst'";
+            PreparedStatement pst = con.prepareStatement(query1);
+            ResultSet rs = pst.executeQuery();
+              
+            
+             
+             while(rs.next())
+                {
+                   String user_id = Integer.toString(rs.getInt("user_id"));
+                   String username =rs.getString("username");
+                   String first_name =rs.getString("first_name");
+                   String last_name =rs.getString("last_name");
+                   String email =rs.getString("e-mail");
+                   String birthday =rs.getString("birthday");
+                   String password = rs.getString("password");
+                   String phone_num = rs.getString("phone_num");
+                   String user_type =rs.getString("user_type");
+                   
+                   String tbData[]={user_id,username,first_name,last_name,email,birthday,password,phone_num,user_type};
+                   DefaultTableModel tb1Model =(DefaultTableModel)jTable1.getModel();
+                   
+                   tb1Model.addRow(tbData);
+                }
+             con.close();
+             
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        try
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+            String query1 = "SELECT * FROM user WHERE user_type='reception'";
+            PreparedStatement pst = con.prepareStatement(query1);
+            ResultSet rs = pst.executeQuery();
+              
+            
+             
+             while(rs.next())
+                {
+                   String user_id = Integer.toString(rs.getInt("user_id"));
+                   String username =rs.getString("username");
+                   String first_name =rs.getString("first_name");
+                   String last_name =rs.getString("last_name");
+                   String email =rs.getString("e-mail");
+                   String birthday =rs.getString("birthday");
+                   String password = rs.getString("password");
+                   String phone_num = rs.getString("phone_num");
+                   String user_type =rs.getString("user_type");
+                   
+                   String tbData[]={user_id,username,first_name,last_name,email,birthday,password,phone_num,user_type};
+                   DefaultTableModel tb1Model =(DefaultTableModel)jTable1.getModel();
+                   
+                   tb1Model.addRow(tbData);
+                }
+             con.close();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        try
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+            String query1 = "SELECT * FROM user WHERE user_type='doctor'";
+            PreparedStatement pst = con.prepareStatement(query1);
+            ResultSet rs = pst.executeQuery();
+              
+            
+             
+             while(rs.next())
+                {
+                   String user_id = Integer.toString(rs.getInt("user_id"));
+                   String username =rs.getString("username");
+                   String first_name =rs.getString("first_name");
+                   String last_name =rs.getString("last_name");
+                   String email =rs.getString("e-mail");
+                   String birthday =rs.getString("birthday");
+                   String password = rs.getString("password");
+                   String phone_num = rs.getString("phone_num");
+                   String user_type =rs.getString("user_type");
+                   
+                   String tbData[]={user_id,username,first_name,last_name,email,birthday,password,phone_num,user_type};
+                   DefaultTableModel tb1Model =(DefaultTableModel)jTable1.getModel();
+                   
+                   tb1Model.addRow(tbData);
+                }
+             con.close();
+             
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
