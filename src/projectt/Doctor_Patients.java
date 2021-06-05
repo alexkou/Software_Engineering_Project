@@ -225,7 +225,7 @@ public class Doctor_Patients extends javax.swing.JFrame {
         }
         else {
             try{
-                java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+                java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");                
                 LogIn_Stuff login_stuff = new LogIn_Stuff();
                 String user_id = login_stuff.stuff_userId();                
                 String fullname = patient_name.getText();

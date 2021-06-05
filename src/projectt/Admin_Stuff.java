@@ -135,8 +135,7 @@ public class Admin_Stuff extends javax.swing.JFrame {
         jButton1.setText("Ενημέρωση");
         jButton1.setBorder(null);
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Γιατροί");
         jButton2.setBorder(null);
 
@@ -150,13 +149,11 @@ public class Admin_Stuff extends javax.swing.JFrame {
         jButton4.setText("Προσθήκη");
         jButton4.setBorder(null);
 
-        jButton5.setBackground(new java.awt.Color(0, 0, 0));
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Γραμματεία");
         jButton5.setBorder(null);
 
-        jButton6.setBackground(new java.awt.Color(0, 0, 0));
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Εργαστήριο");
         jButton6.setBorder(null);
 
