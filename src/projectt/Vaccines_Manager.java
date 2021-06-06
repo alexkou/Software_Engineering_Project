@@ -87,12 +87,12 @@ public class Vaccines_Manager extends javax.swing.JFrame {
         jButton3.setText("Χ");
 
         jTextField4.setBackground(new java.awt.Color(150, 235, 240));
-        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTextField4.setText("Προσήλθαν: ");
         jTextField4.setBorder(null);
 
         jTextField5.setBackground(new java.awt.Color(150, 235, 240));
-        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTextField5.setText("Δεν προσήλθαν: ");
         jTextField5.setBorder(null);
 
@@ -134,8 +134,8 @@ public class Vaccines_Manager extends javax.swing.JFrame {
                                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(181, 181, 181))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(158, 158, 158))))))))
+                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(144, 144, 144))))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
