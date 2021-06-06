@@ -5,6 +5,14 @@
  */
 package projectt;
 
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Χαρά
@@ -62,6 +70,13 @@ public class Patient_Prescription extends javax.swing.JFrame {
                 jTable1AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jTable1.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jTable1InputMethodTextChanged(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -154,12 +169,71 @@ public class Patient_Prescription extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+        DefaultTableModel model = (DefaultTableModel) jTabbedPane1.getModel();
+        model.setRowCount(0);
+        try
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+            String query1 = "SELECT * FROM prescription WHERE prescription_id = ";
+            PreparedStatement pst = con.prepareStatement(query1);
+            ResultSet rs = pst.executeQuery();
+              
+            
+             
+             while(rs.next())
+                {
+                   String prescription_id = Integer.toString(rs.getInt("prescription_id"));
+                   String doctor_id = Integer.toString(rs.getInt("doctor_id"));
+                   String patient_id = Integer.toString(rs.getInt("patient_id"));
+                   String medicine = rs.getString("medicine");
+                   String instructions = rs.getString("instructions"); 
+                   String tbData[]={prescription_id,doctor_id,patient_id,medicine,instructions};
+                   DefaultTableModel tb1Model =(DefaultTableModel)jTabbedPane1.getModel();
+                   
+                   tb1Model.addRow(tbData);
+                }
+             con.close();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
         
     }//GEN-LAST:event_jTable1AncestorAdded
+
+    private void jTable1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTable1InputMethodTextChanged
+       DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        try
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+            String query1 = "SELECT prescription_id FROM prescription";
+            PreparedStatement pst = con.prepareStatement(query1);
+            ResultSet rs = pst.executeQuery();
+              
+            
+             
+             while(rs.next())
+                {
+                   String user_id = Integer.toString(rs.getInt("user_id"));
+                   String tbData[]= {user_id};
+                   DefaultTableModel tb1Model =(DefaultTableModel)jTable1.getModel();
+                   
+                   tb1Model.addRow(tbData);
+                }
+             con.close();
+             
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }//GEN-LAST:event_jTable1InputMethodTextChanged
 
     /**
      * @param args the command line arguments
