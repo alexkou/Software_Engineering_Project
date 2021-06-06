@@ -61,6 +61,7 @@ public class Reception_Appointment extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jTextField1.setText("Ραντεβού");
         jTextField1.setBorder(null);
+        jTextField1.setFocusable(false);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -69,6 +70,7 @@ public class Reception_Appointment extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Ημερομηνία");
+        jLabel1.setFocusable(false);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -83,27 +85,28 @@ public class Reception_Appointment extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(0, 0, 0));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Επίσκεψη");
-        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton3.setBorder(null);
 
         jTextField2.setBackground(new java.awt.Color(150, 235, 250));
         jTextField2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextField2.setText("Δημιουργία νέου ραντεβού");
         jTextField2.setBorder(null);
+        jTextField2.setFocusable(false);
 
         jButton4.setBackground(new java.awt.Color(0, 0, 0));
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Αναζήτηση");
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton4.setBorder(null);
 
         jButton5.setBackground(new java.awt.Color(0, 0, 0));
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Εμβόλιο");
-        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton5.setBorder(null);
 
         jButton6.setBackground(new java.awt.Color(0, 0, 0));
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Εξετάσεις");
-        jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton6.setBorder(null);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

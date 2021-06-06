@@ -144,6 +144,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
@@ -155,6 +156,7 @@
               <Font name="Tahoma" size="18" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#x397;&#x3bc;&#x3b5;&#x3c1;&#x3bf;&#x3bc;&#x3b7;&#x3bd;&#x3af;&#x3b1;"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -205,9 +207,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="&#x395;&#x3c0;&#x3af;&#x3c3;&#x3ba;&#x3b5;&#x3c8;&#x3b7;"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder/>
-              </Border>
+              <Border info="null"/>
             </Property>
           </Properties>
         </Component>
@@ -223,6 +223,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton4">
@@ -235,9 +236,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="&#x391;&#x3bd;&#x3b1;&#x3b6;&#x3ae;&#x3c4;&#x3b7;&#x3c3;&#x3b7;"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder/>
-              </Border>
+              <Border info="null"/>
             </Property>
           </Properties>
         </Component>
@@ -251,9 +250,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="&#x395;&#x3bc;&#x3b2;&#x3cc;&#x3bb;&#x3b9;&#x3bf;"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder/>
-              </Border>
+              <Border info="null"/>
             </Property>
           </Properties>
         </Component>
@@ -267,9 +264,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="&#x395;&#x3be;&#x3b5;&#x3c4;&#x3ac;&#x3c3;&#x3b5;&#x3b9;&#x3c2;"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder/>
-              </Border>
+              <Border info="null"/>
             </Property>
           </Properties>
         </Component>
