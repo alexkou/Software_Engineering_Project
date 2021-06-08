@@ -25,6 +25,7 @@ public class Supplies extends javax.swing.JFrame {
      */
     public Supplies() {
         initComponents();
+        test();
     }
 
     /**
@@ -135,32 +136,28 @@ public class Supplies extends javax.swing.JFrame {
         jTextField12.setFocusable(false);
 
         jTextField13.setBackground(new java.awt.Color(150, 235, 240));
-        jTextField13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTextField13.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField13.setText("1000");
-        jTextField13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTextField13.setBorder(null);
         jTextField13.setFocusable(false);
 
         jTextField14.setBackground(new java.awt.Color(150, 235, 240));
-        jTextField14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTextField14.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField14.setText("10");
-        jTextField14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTextField14.setBorder(null);
         jTextField14.setFocusable(false);
 
         jTextField15.setBackground(new java.awt.Color(150, 235, 240));
-        jTextField15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTextField15.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField15.setText("10");
-        jTextField15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTextField15.setBorder(null);
         jTextField15.setFocusable(false);
 
         jTextField16.setBackground(new java.awt.Color(150, 235, 240));
-        jTextField16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTextField16.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField16.setText("10");
         jTextField16.setToolTipText("");
-        jTextField16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTextField16.setBorder(null);
         jTextField16.setFocusable(false);
         jTextField16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,10 +191,9 @@ public class Supplies extends javax.swing.JFrame {
         jTextField18.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jTextField19.setBackground(new java.awt.Color(150, 235, 240));
-        jTextField19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField19.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTextField19.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField19.setText("10");
-        jTextField19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTextField19.setBorder(null);
         jTextField19.setFocusable(false);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -347,7 +343,48 @@ public class Supplies extends javax.swing.JFrame {
         
 
     }//GEN-LAST:event_jTextField16ActionPerformed
+    private static void test() {
+        try{
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+            String query = "SELECT stock FROM supplies WHERE supply='gantia'";
+            PreparedStatement pst = con.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+            if(rs.next()) {
+               jTextField16.setText(""+rs.getInt("stock"));
 
+            }
+            String query1 = "SELECT stock FROM supplies WHERE supply='maskes'";
+            PreparedStatement pst1 = con.prepareStatement(query1);
+            ResultSet rs1 = pst1.executeQuery();
+            if(rs1.next()) {
+               jTextField13.setText(""+rs1.getInt("stock"));
+            }
+            String query2 = "SELECT stock FROM supplies WHERE supply='gazes'";
+            PreparedStatement pst2 = con.prepareStatement(query2);
+            ResultSet rs2 = pst2.executeQuery();
+            if(rs2.next()) {
+               jTextField14.setText(""+rs2.getInt("stock"));
+            }
+            String query3 = "SELECT stock FROM supplies WHERE supply='formes_xeirourgeiou'";
+            PreparedStatement pst3 = con.prepareStatement(query3);
+            ResultSet rs3 = pst3.executeQuery();
+            if(rs3.next()) {
+               jTextField15.setText(""+rs3.getInt("stock"));
+            }
+            String query4 = "SELECT stock FROM supplies WHERE supply='narthikes'";
+            PreparedStatement pst4 = con.prepareStatement(query4);
+            ResultSet rs4 = pst4.executeQuery();
+            if(rs4.next()) {
+               jTextField19.setText(""+rs4.getInt("stock"));
+            }
+       
+            
+          
+        }
+         catch (SQLException ex) {
+            Logger.getLogger(Supplies.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         jLabel2.setText("");
@@ -436,23 +473,8 @@ public class Supplies extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-            String query = "SELECT stock FROM supplies WHERE supply='gantia'";
-            PreparedStatement pst = con.prepareStatement(query);
-            ResultSet rs = pst.executeQuery();
-            String s= String.valueOf(rs);
-            jTextField16.setText(s);
-        }
-         catch (ClassNotFoundException ex) {
-            Logger.getLogger(Supplies.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Supplies.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            
-            
-            
+                 
+                    
        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -490,13 +512,13 @@ public class Supplies extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
+    static javax.swing.JTextField jTextField13;
+    static javax.swing.JTextField jTextField14;
+    static javax.swing.JTextField jTextField15;
     static javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField19;
+    static javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
