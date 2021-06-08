@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.awt.event.*;
 import java.sql.*;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -153,7 +154,7 @@ public class Patient_Visit extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Ραντεβού"
+                "ID Ραντεβού ", "Είδος Ραντεβού"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -263,24 +264,49 @@ public class Patient_Visit extends javax.swing.JFrame {
         }
         else{
              try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
                 if(jCheckBox1.isSelected() == true){
-                String sql = "SELECT app_id AS Ραντεβού FROM appointment WHERE app_type = 'visit' ";
-                PreparedStatement pst = con.prepareStatement(sql);
+                String query1 = "SELECT app_id,app_type FROM appointment WHERE app_type = 'visit'";
+                PreparedStatement pst = con.prepareStatement(query1);
                 ResultSet rs = pst.executeQuery();
+                while(rs.next())
+                {
+                   String app_id = Integer.toString(rs.getInt("app_id"));
+                   String app_type =rs.getString("app_type");
+                   String tbData[]= {app_id,app_type};
+                   DefaultTableModel tb1Model =(DefaultTableModel)jTable1.getModel();
+                   tb1Model.addRow(tbData);
+                }
                 }
                 if(jCheckBox2.isSelected() == true){
-                String sql = "SELECT app_id AS Ραντεβού FROM appointment WHERE app_type = 'tests' ";
+                String sql = "SELECT app_id,app_type FROM appointment WHERE app_type = 'tests' ";
                 PreparedStatement pst = con.prepareStatement(sql);
                 ResultSet rs = pst.executeQuery();
+                while(rs.next())
+                {
+                   String app_id = Integer.toString(rs.getInt("app_id"));
+                   String app_type =rs.getString("app_type");
+                   String tbData[]= {app_id,app_type};
+                   DefaultTableModel tb1Model =(DefaultTableModel)jTable1.getModel();
+                   tb1Model.addRow(tbData);
+                }
                 }
                 if(jCheckBox3.isSelected() == true){
-                String sql = "SELECT app_id AS Ραντεβού FROM appointment WHERE app_type = 'covid_vaccine' ";
+                String sql = "SELECT app_id,app_type FROM appointment WHERE app_type = = 'covid_vaccine' ";
                 PreparedStatement pst = con.prepareStatement(sql);
                 ResultSet rs = pst.executeQuery();
+                while(rs.next())
+                {
+                   String app_id = Integer.toString(rs.getInt("app_id"));
+                   String app_type =rs.getString("app_type");
+                   String tbData[]= {app_id,app_type};
+                   DefaultTableModel tb1Model =(DefaultTableModel)jTable1.getModel();
+                   tb1Model.addRow(tbData);
+                }
                 }
             } catch(Exception e) {
-                JOptionPane.showMessageDialog(null,e);
+                JOptionPane.showMessageDialog(this,"Δεν υπάρχει καταχωρημένο ραντεβού!");
             }
         }
     }//GEN-LAST:event_jButton7ActionPerformed
