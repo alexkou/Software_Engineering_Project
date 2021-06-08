@@ -194,6 +194,10 @@ public class LogIn_Stuff extends javax.swing.JFrame {
                         dispose();
                         new Lab_analyst().setVisible(true);
                         break;
+                    case "vaccines manager":
+                        dispose();
+                        new Vaccines_Manager().setVisible(true);
+                        break;
                     default:
                         break;
                 }

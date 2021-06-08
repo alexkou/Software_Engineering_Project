@@ -255,6 +255,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="back_Button1ActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="Doctor_Appointments_back_Button1"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
