@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -65,6 +66,7 @@ public class Admin_Stuff extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,6 +86,12 @@ public class Admin_Stuff extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTable1.setFocusable(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -116,7 +124,7 @@ public class Admin_Stuff extends javax.swing.JFrame {
 
         jLabel6.setBackground(new java.awt.Color(150, 235, 240));
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel6.setText("Ημερομηνία Γέννησης");
+        jLabel6.setText("Ημερομηνία Γέννησης(YYYY-MM-DD)");
 
         jLabel7.setBackground(new java.awt.Color(150, 235, 240));
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
@@ -126,9 +134,27 @@ public class Admin_Stuff extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel8.setText("Κινητό τηλέφωνο");
 
+        jTextField2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        jTextField3.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        jTextField4.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        jTextField5.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        jTextField6.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        jTextField7.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        jTextField8.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        jTextField9.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
         jLabel9.setBackground(new java.awt.Color(150, 235, 240));
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel9.setText("Όνομα");
+
+        jTextField10.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/A4AD5659B5D44610AB530DF0BAB8279D.jpeg"))); // NOI18N
 
@@ -142,10 +168,17 @@ public class Admin_Stuff extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Ενημέρωση");
         jButton1.setBorder(null);
+        jButton1.setFocusable(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Γιατροί");
         jButton2.setBorder(null);
+        jButton2.setFocusable(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -154,17 +187,30 @@ public class Admin_Stuff extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(0, 0, 0));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Διαγραφή");
+        jButton3.setText("Αφαίρεση");
         jButton3.setBorder(null);
+        jButton3.setFocusable(false);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(0, 0, 0));
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Προσθήκη");
         jButton4.setBorder(null);
+        jButton4.setFocusable(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Γραμματεία");
         jButton5.setBorder(null);
+        jButton5.setFocusable(false);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -174,11 +220,15 @@ public class Admin_Stuff extends javax.swing.JFrame {
         jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Εργαστήριο");
         jButton6.setBorder(null);
+        jButton6.setFocusable(false);
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -209,7 +259,8 @@ public class Admin_Stuff extends javax.swing.JFrame {
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,7 +270,7 @@ public class Admin_Stuff extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(88, 88, 88)
                                 .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 230, Short.MAX_VALUE)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -301,7 +352,9 @@ public class Admin_Stuff extends javax.swing.JFrame {
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGap(1, 1, 1)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -312,7 +365,7 @@ public class Admin_Stuff extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -338,7 +391,7 @@ public class Admin_Stuff extends javax.swing.JFrame {
                    String username =rs.getString("username");
                    String first_name =rs.getString("first_name");
                    String last_name =rs.getString("last_name");
-                   String email =rs.getString("e-mail");
+                   String email =rs.getString("email");
                    String birthday =rs.getString("birthday");
                    String password = rs.getString("password");
                    String phone_num = rs.getString("phone_num");
@@ -378,7 +431,7 @@ public class Admin_Stuff extends javax.swing.JFrame {
                    String username =rs.getString("username");
                    String first_name =rs.getString("first_name");
                    String last_name =rs.getString("last_name");
-                   String email =rs.getString("e-mail");
+                   String email =rs.getString("email");
                    String birthday =rs.getString("birthday");
                    String password = rs.getString("password");
                    String phone_num = rs.getString("phone_num");
@@ -418,7 +471,7 @@ public class Admin_Stuff extends javax.swing.JFrame {
                    String username =rs.getString("username");
                    String first_name =rs.getString("first_name");
                    String last_name =rs.getString("last_name");
-                   String email =rs.getString("e-mail");
+                   String email =rs.getString("email");
                    String birthday =rs.getString("birthday");
                    String password = rs.getString("password");
                    String phone_num = rs.getString("phone_num");
@@ -437,6 +490,113 @@ public class Admin_Stuff extends javax.swing.JFrame {
             Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel tb1Model =(DefaultTableModel)jTable1.getModel();
+        String tb1_user_id =tb1Model.getValueAt(jTable1.getSelectedRow(),0).toString();
+        String tb1_username =tb1Model.getValueAt(jTable1.getSelectedRow(),1).toString();
+        String tb1_first_name =tb1Model.getValueAt(jTable1.getSelectedRow(),2).toString();
+        String tb1_last_name =tb1Model.getValueAt(jTable1.getSelectedRow(),3).toString();
+        String tb1_email =tb1Model.getValueAt(jTable1.getSelectedRow(),4).toString();
+        String tb1_birthday =tb1Model.getValueAt(jTable1.getSelectedRow(),5).toString();
+        String tb1_password =tb1Model.getValueAt(jTable1.getSelectedRow(),6).toString();
+        String tb1_phone_num =tb1Model.getValueAt(jTable1.getSelectedRow(),7).toString();
+        String tb1_user_type =tb1Model.getValueAt(jTable1.getSelectedRow(),8).toString();
+        //set to textfield
+        jTextField2.setText(tb1_user_id);
+        jTextField3.setText(tb1_username);
+        jTextField4.setText(tb1_first_name);
+        jTextField5.setText(tb1_last_name);
+        jTextField6.setText(tb1_email);
+        jTextField7.setText(tb1_birthday);
+        jTextField8.setText(tb1_password);
+        jTextField9.setText(tb1_phone_num);
+        jTextField10.setText(tb1_user_type);
+     
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        try
+        {
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+            String query1= "DELETE FROM user WHERE user_id="+jTextField2.getText();
+            PreparedStatement pst = con.prepareStatement(query1);
+            int rs = pst.executeUpdate();
+            JOptionPane.showMessageDialog(this,("Επιτυχής Αφαίρεση!"));
+            
+                    
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          
+    }//GEN-LAST:event_jButton3ActionPerformed
+   
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        jLabel11.setText("");
+    if(jTextField2.getText().isEmpty() ||jTextField3.getText().isEmpty() ||jTextField4.getText().isEmpty() ||jTextField5.getText().isEmpty() ||jTextField6.getText().isEmpty() ||jTextField7.getText().isEmpty() ||jTextField8.getText().isEmpty() ||jTextField9.getText().isEmpty() ||jTextField10.getText().isEmpty() )
+    {
+         jLabel11.setText("Συμπληρώστε όλα τα πεδία!");
+    }
+    else {
+        try
+        {
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+            String query1= "INSERT INTO user VALUES ('"+jTextField2.getText()+"','"+jTextField3.getText()+"','"+jTextField4.getText()+"','"+jTextField5.getText()+"','"+jTextField6.getText()+"','"+jTextField7.getText()+"','"+jTextField8.getText()+"','"+jTextField9.getText()+"','"+jTextField10.getText()+"')";
+            PreparedStatement pst = con.prepareStatement(query1);
+            int rs = pst.executeUpdate();
+            JOptionPane.showMessageDialog(this,("Επιτυχής Προσθήκη!"));
+           
+                    
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
+        
+             
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+     jLabel11.setText("");
+    if(jTextField2.getText().isEmpty() ||jTextField3.getText().isEmpty() ||jTextField4.getText().isEmpty() ||jTextField5.getText().isEmpty() ||jTextField6.getText().isEmpty() ||jTextField7.getText().isEmpty() ||jTextField8.getText().isEmpty() ||jTextField9.getText().isEmpty() ||jTextField10.getText().isEmpty() )
+    {
+         jLabel11.setText("Συμπληρώστε όλα τα πεδία!");
+    }
+    else {
+        try
+        {
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+            String query1= "UPDATE user SET user_id = '"+jTextField2.getText()+"', username ='"+jTextField3.getText()+"',first_name='"+jTextField4.getText()+"',last_name='"+jTextField5.getText()+"',email='"+jTextField6.getText()+"',birthday='"+jTextField7.getText()+"',password='"+jTextField8.getText()+"', phone_num='"+jTextField9.getText()+"', user_type='"+jTextField10.getText()+"' WHERE user_id ='"+jTextField2.getText()+"'";
+            PreparedStatement pst = con.prepareStatement(query1);
+            int rs = pst.executeUpdate();
+            JOptionPane.showMessageDialog(this,("Επιτυχής Ενημέρωση!"));
+           
+                    
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -482,6 +642,7 @@ public class Admin_Stuff extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
