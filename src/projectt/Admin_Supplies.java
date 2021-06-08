@@ -296,8 +296,8 @@ public class Admin_Supplies extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         jLabel11.setText("");
-        String g = jTextField3.getText();               
-        String m =jTextField4.getText();
+        String m = jTextField3.getText();               
+        String g =jTextField4.getText();
         String ga = jTextField5.getText();                
         String fx = jTextField6.getText();        
         String n = jTextField7.getText();
@@ -314,8 +314,8 @@ public class Admin_Supplies extends javax.swing.JFrame {
         else{
             try
         {
-            float g1 = (Float.parseFloat(g) * 0.50f);
-            float m1 = (Float.parseFloat(m) * 0.20f);
+            float m1 = (Float.parseFloat(m) * 0.50f);
+            float g1 = (Float.parseFloat(g) * 0.20f);
             float ga1 = (Float.parseFloat(ga) * 0.30f);
             float fx1 = (Float.parseFloat(fx) * 15.00f);
             float n1 = (Float.parseFloat(n) * 1.20f);
@@ -325,12 +325,12 @@ public class Admin_Supplies extends javax.swing.JFrame {
             
             Class.forName("com.mysql.cj.jdbc.Driver");
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-            String query= "UPDATE supplies SET price ='"+g1+"' WHERE supply='gantia'";
+            String query= "UPDATE supplies SET price ='"+m1+"' WHERE supply='maskes'";
             PreparedStatement pst = con.prepareStatement(query);
             int rs = pst.executeUpdate();
             
-            String query1= "UPDATE supplies SET price ='"+m1+"' WHERE supply='maskes'";
-            PreparedStatement pst1 = con.prepareStatement(query);
+            String query1= "UPDATE supplies SET price ='"+g1+"' WHERE supply='gantia'";
+            PreparedStatement pst1 = con.prepareStatement(query1);
             int rs1 = pst1.executeUpdate();
             
             String query2= "UPDATE supplies SET price ='"+ga1+"' WHERE supply='gazes'";

@@ -5,6 +5,13 @@
  */
 package projectt;
 
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Marinos
@@ -16,6 +23,7 @@ public class Final_Supplies extends javax.swing.JFrame {
      */
     public Final_Supplies() {
         initComponents();
+        test();
     }
 
     /**
@@ -87,6 +95,7 @@ public class Final_Supplies extends javax.swing.JFrame {
         jButton1.setText("Αποστολή");
 
         jTextField1.setBackground(new java.awt.Color(240, 240, 240));
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextField1.setBorder(null);
         jTextField1.setFocusable(false);
@@ -97,7 +106,7 @@ public class Final_Supplies extends javax.swing.JFrame {
         });
 
         jTextField2.setBackground(new java.awt.Color(240, 240, 240));
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextField2.setBorder(null);
         jTextField2.setFocusable(false);
@@ -273,7 +282,7 @@ public class Final_Supplies extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
@@ -295,7 +304,69 @@ public class Final_Supplies extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+private static void test() {
+        try{
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+            String query = "SELECT price FROM supplies WHERE supply='maskes'";
+            PreparedStatement pst = con.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+            if(rs.next()) {
+               jTextField1.setText(""+rs.getFloat("price"));
 
+            }
+            String query1 = "SELECT price FROM supplies WHERE supply='gantia'";
+            PreparedStatement pst1 = con.prepareStatement(query1);
+            ResultSet rs1 = pst1.executeQuery();
+            if(rs1.next()) {
+               jTextField2.setText(""+rs1.getFloat("price"));
+            }
+            String query2 = "SELECT price FROM supplies WHERE supply='gazes'";
+            PreparedStatement pst2 = con.prepareStatement(query2);
+            ResultSet rs2 = pst2.executeQuery();
+            if(rs2.next()) {
+               jTextField3.setText(""+rs2.getFloat("price"));
+            }
+            String query3 = "SELECT price FROM supplies WHERE supply='formes_xeirourgeiou'";
+            PreparedStatement pst3 = con.prepareStatement(query3);
+            ResultSet rs3 = pst3.executeQuery();
+            if(rs3.next()) {
+               jTextField4.setText(""+rs3.getFloat("price"));
+            }
+            String query4 = "SELECT price FROM supplies WHERE supply='surigges'";
+            PreparedStatement pst4 = con.prepareStatement(query4);
+            ResultSet rs4 = pst4.executeQuery();
+            if(rs4.next()) {
+               jTextField5.setText(""+rs4.getFloat("price"));
+            }
+            String query5 = "SELECT price FROM supplies WHERE supply='rammata'";
+            PreparedStatement pst5 = con.prepareStatement(query5);
+            ResultSet rs5 = pst5.executeQuery();
+            if(rs5.next()) {
+               jTextField6.setText(""+rs5.getFloat("price"));
+            }
+            String query6 = "SELECT price FROM supplies WHERE supply='narthikes'";
+            PreparedStatement pst6 = con.prepareStatement(query6);
+            ResultSet rs6 = pst6.executeQuery();
+            if(rs6.next()) {
+               jTextField7.setText(""+rs6.getFloat("price"));
+            }
+            String query7 = "SELECT price FROM supplies WHERE supply='krevatia'";
+            PreparedStatement pst7 = con.prepareStatement(query7);
+            ResultSet rs7 = pst7.executeQuery();
+            if(rs7.next()) {
+               jTextField8.setText(""+rs7.getFloat("price"));
+            }
+       
+       
+       
+       
+            
+                 
+        }
+         catch (SQLException ex) {
+            Logger.getLogger(Supplies.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -351,13 +422,13 @@ public class Final_Supplies extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    static javax.swing.JTextField jTextField1;
+    static javax.swing.JTextField jTextField2;
+    static javax.swing.JTextField jTextField3;
+    static javax.swing.JTextField jTextField4;
+    static javax.swing.JTextField jTextField5;
+    static javax.swing.JTextField jTextField6;
+    static javax.swing.JTextField jTextField7;
+    static javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
 }
