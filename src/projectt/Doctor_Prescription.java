@@ -192,42 +192,43 @@ public class Doctor_Prescription extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void back_Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_Button1ActionPerformed
+    private void newPresciption() {
 
+        if (patient_name.getText().trim().isEmpty() || medicine.getText().trim().isEmpty() || instructions.getText().trim().isEmpty()) {
+            validation.setText("Συμπληρώστε όλα τα πεδία!");
+
+        } else {
+            String fullname = patient_name.getText();
+            String medicines = medicine.getText();
+            String instructions_text = instructions.getText().trim();
+
+            try {
+                java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+                LogIn_Stuff login_stuff = new LogIn_Stuff();
+                String user_id = login_stuff.stuff_userId();
+                String query = "INSERT INTO prescription VALUES(NULL, (SELECT doctor_id FROM doctor WHERE doctor_id= '" + user_id + "'), (SELECT user_id FROM user WHERE last_name ='" + fullname + "'), '" + medicines + "', '" + instructions_text + "')";
+                PreparedStatement pst = con.prepareStatement(query);
+                pst.executeUpdate();
+
+                JOptionPane.showMessageDialog(this, "Η συνταγή αποθηκεύτηκε με επιτυχία!");
+                this.setVisible(false);
+                new Doctor().setVisible(true);
+
+                con.close();
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+    }
+    
+    private void back_Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_Button1ActionPerformed
         dispose();
         new Doctor().setVisible(true);
     }//GEN-LAST:event_back_Button1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
- 
-
-            if(patient_name.getText().trim().isEmpty() || medicine.getText().trim().isEmpty() || instructions.getText().trim().isEmpty()) {
-                validation.setText("Συμπληρώστε όλα τα πεδία!");
-
-            }
-            else {
-                String fullname = patient_name.getText();
-                String medicines = medicine.getText();
-                String instructions_text = instructions.getText().trim();
-                
-        try {
-            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");   
-            LogIn_Stuff login_stuff = new LogIn_Stuff();
-            String user_id = login_stuff.stuff_userId();
-            String query = "INSERT INTO prescription VALUES(NULL, (SELECT doctor_id FROM doctor WHERE doctor_id= '"+user_id+"'), (SELECT user_id FROM user WHERE last_name ='"+fullname+"'), '"+medicines+"', '"+instructions_text+"')";
-            PreparedStatement pst = con.prepareStatement(query);
-            pst.executeUpdate();             
-            
-            JOptionPane.showMessageDialog(this, "Η συνταγή αποθηκεύτηκε με επιτυχία!"); 
-            this.setVisible(false);
-            new Doctor().setVisible(true);
-            
-            con.close();
-            
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null,e);
-            }
-        }
+        newPresciption();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
