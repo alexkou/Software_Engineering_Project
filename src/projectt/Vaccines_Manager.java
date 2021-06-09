@@ -66,11 +66,6 @@ public class Vaccines_Manager extends javax.swing.JFrame {
         jTextField1.setText("Ραντεβού Εμβολιασμών");
         jTextField1.setBorder(null);
         jTextField1.setFocusable(false);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/A4AD5659B5D44610AB530DF0BAB8279D.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -80,11 +75,6 @@ public class Vaccines_Manager extends javax.swing.JFrame {
         jTextField2.setText("Ημερομηνία");
         jTextField2.setBorder(null);
         jTextField2.setFocusable(false);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
 
         myTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -141,11 +131,6 @@ public class Vaccines_Manager extends javax.swing.JFrame {
     jTextField4.setText("Προσήλθαν ");
     jTextField4.setBorder(null);
     jTextField4.setFocusable(false);
-    jTextField4.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jTextField4ActionPerformed(evt);
-        }
-    });
 
     jTextField5.setBackground(new java.awt.Color(150, 235, 240));
     jTextField5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -246,10 +231,11 @@ public class Vaccines_Manager extends javax.swing.JFrame {
                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(counter_1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(counter_2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(counter_1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(counter_2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                     .addComponent(jLabel2))))
     );
@@ -267,12 +253,32 @@ public class Vaccines_Manager extends javax.swing.JFrame {
 
     pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void getVacAppointments() {
+        try {
+            LogIn_Stuff login_stuff = new LogIn_Stuff();
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String date = sdf.format(DateChooser.getDate());
+            String user_id = login_stuff.stuff_userId();
+            String sql = "SELECT CONCAT(first_name,' ',last_name) AS Ονοματεπώνυμο, date_format(app_date,'%H:%i') AS Ώρα, vaccine_title As Εμβόλιο FROM appointment INNER JOIN user on patient_id=user_id INNER JOIN covid_vaccine ON app_id=vacc_app_id WHERE DATE(app_date)='" + date + "' AND  vacc_man_id='" + user_id + "' ";
+            PreparedStatement pst = con.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+            if (!rs.isBeforeFirst()) {
+                //DateChooser.setCalendar(null);
+                myTable.setModel(new DefaultTableModel(null, new String[]{"Ονοματεπώνυμο", "Ώρα", "Εμβόλιο"}));
+                JOptionPane.showMessageDialog(this, "Δεν υπάρχουν ραντεβού για αυτή την ημερομηνία.");
+            } else {
+                myTable.setModel(DbUtils.resultSetToTableModel(rs));
+            }
 
-    private void absenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_absenceActionPerformed
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    private void absenceCounter() {
         DefaultTableModel tablemodel = (DefaultTableModel) myTable.getModel();
         if (myTable.getSelectedRow() != -1) {
             absence_counter++;
@@ -281,9 +287,9 @@ public class Vaccines_Manager extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Επιλέξτε ραντεβού!");
         }
-    }//GEN-LAST:event_absenceActionPerformed
-
-    private void presenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_presenceActionPerformed
+    }
+    
+    private void presenceCounter() {
         DefaultTableModel tablemodel = (DefaultTableModel) myTable.getModel();
         if (myTable.getSelectedRow() != -1) {
             presence_counter++;
@@ -292,46 +298,24 @@ public class Vaccines_Manager extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Επιλέξτε ραντεβού!");
         }
+    }
+        
+    private void absenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_absenceActionPerformed
+        absenceCounter();
+    }//GEN-LAST:event_absenceActionPerformed
+
+    private void presenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_presenceActionPerformed
+        presenceCounter();
     }//GEN-LAST:event_presenceActionPerformed
 
     private void search_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_buttonActionPerformed
         if(DateChooser.getDate() == null) {
             JOptionPane.showMessageDialog(this,("Επιλέξτε ημερομηνία!"));
-
         }
         else {
-            try {
-                LogIn_Stuff login_stuff = new LogIn_Stuff();
-                java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                String date = sdf.format(DateChooser.getDate());
-                String user_id = login_stuff.stuff_userId();
-                String sql = "SELECT CONCAT(first_name,' ',last_name) AS Ονοματεπώνυμο, TIME(app_date) AS Ώρα, vaccine_title As Εμβόλιο FROM appointment INNER JOIN user on patient_id=user_id INNER JOIN covid_vaccine ON app_id=vacc_app_id WHERE DATE(app_date)='"+date+"' AND  vacc_man_id='"+user_id +"' ";
-                PreparedStatement pst = con.prepareStatement(sql);
-                ResultSet rs = pst.executeQuery();
-
-                if(!rs.isBeforeFirst()) {
-                    //DateChooser.setCalendar(null);
-                    myTable.setModel(new DefaultTableModel(null,new String[]{"Ονοματεπώνυμο", "Ώρα", "Εμβόλιο"}));
-                    JOptionPane.showMessageDialog(this, "Δεν υπάρχουν ραντεβού για αυτή την ημερομηνία.");
-                }
-                else {
-                    myTable.setModel(DbUtils.resultSetToTableModel(rs));
-                }
-
-            } catch(Exception e) {
-                JOptionPane.showMessageDialog(null,e);
-            }
+            getVacAppointments();
         }
     }//GEN-LAST:event_search_buttonActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments

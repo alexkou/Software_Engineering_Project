@@ -195,9 +195,7 @@ public class Doctor_Appointments extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void search_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_buttonActionPerformed
-
+    private void getAppointment() {
         
         if(DateChooser.getDate() == null) {
             JOptionPane.showMessageDialog(this,("Επιλέξτε ημερομηνία!"));
@@ -210,13 +208,13 @@ public class Doctor_Appointments extends javax.swing.JFrame {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 String date = sdf.format(DateChooser.getDate());
                 String user_id = login_stuff.stuff_userId();
-                String sql = "SELECT CONCAT(first_name,' ',last_name) AS Ονοματεπώνυμο, TIME(app_date) AS Ώρα FROM appointment INNER JOIN user on patient_id=user_id INNER JOIN visit ON app_id=visit_id WHERE DATE(app_date)='"+date+"' AND visit.doctor_id='"+user_id+"' ";
+                String sql = "SELECT CONCAT(first_name,' ',last_name) AS Ονοματεπώνυμο, date_format(app_date,'%H:%i') AS Ώρα FROM appointment INNER JOIN user on patient_id=user_id INNER JOIN visit ON app_id=visit_id WHERE DATE(app_date)='"+date+"' AND visit.doctor_id='"+user_id+"' ";
                 PreparedStatement pst = con.prepareStatement(sql);
                 ResultSet rs = pst.executeQuery();
 
                 if(!rs.isBeforeFirst()) {
                     //DateChooser.setCalendar(null);
-                    myTable.setModel(new DefaultTableModel(null,new String[]{"Ονοματεπώνυμο", "Ημερομηνία"}));
+                    myTable.setModel(new DefaultTableModel(null,new String[]{"Ονοματεπώνυμο", "Ώρα"}));
                     JOptionPane.showMessageDialog(this, "Δεν υπάρχουν ραντεβού για αυτή την ημερομηνία.");
                 }
                 else {
@@ -226,11 +224,14 @@ public class Doctor_Appointments extends javax.swing.JFrame {
             } catch(Exception e) {
                 JOptionPane.showMessageDialog(null,e);
             }
-        }    
+        }        
+    }
+    
+    private void search_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_buttonActionPerformed
+        getAppointment();
     }//GEN-LAST:event_search_buttonActionPerformed
 
     private void back_Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_Button1ActionPerformed
-
         dispose();
         new Doctor().setVisible(true);
     }//GEN-LAST:event_back_Button1ActionPerformed

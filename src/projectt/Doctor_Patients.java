@@ -211,54 +211,85 @@ public class Doctor_Patients extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void back_Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_Button1ActionPerformed
+    private void getDiagnosis() {
 
+        try {
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+            LogIn_Stuff login_stuff = new LogIn_Stuff();
+            String user_id = login_stuff.stuff_userId();
+            String fullname = patient_name.getText();
+            String query1 = "SELECT CONCAT(first_name,' ',last_name) AS Ονοματεπώνυμο, textbox AS Διάγνωση, DATE(diagnosis_date) AS Ημερομηνία FROM diagnosis INNER JOIN user on patient_id = user_id WHERE last_name ='" + fullname + "' AND doctor_id='" + user_id + "' ";
+            PreparedStatement pst = con.prepareStatement(query1);
+            ResultSet rs = pst.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                history_table.setModel(new DefaultTableModel(null, new String[]{"Ονοματεπώνυμο", "Διάγνωση", "Ημερομηνία"}));
+                JOptionPane.showMessageDialog(this, "Δεν υπάρχει ιστορικό για αυτό τον ασθενή.");
+            } else {
+                history_table.setModel(DbUtils.resultSetToTableModel(rs));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    private void getTestResults() {
+
+        try {
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+            String fullname = patient_name.getText();
+            String query2 = "SELECT CONCAT(first_name,' ', last_name) AS Ονοματεπώνυμο, test_title AS Τύπος_εξέτασης, test_date AS Ημερομηνία, TO_BASE64(test_file) AS Αρχείο_εξέτασης FROM test_results INNER JOIN user on patient_id=user_id WHERE last_name ='" + fullname + "' ";
+            PreparedStatement pst2 = con.prepareStatement(query2);
+            ResultSet rs2 = pst2.executeQuery();
+
+            if (!rs2.isBeforeFirst()) {
+                exams_table.setModel(new DefaultTableModel(null, new String[]{"Ονοματεπώνυμο", "Τύπος_εξέτασης", "Ημερομηνία", "Αρχείο_εξέτασης"}));
+                JOptionPane.showMessageDialog(this, "Δεν υπάρχουν εξετάσεις για αυτό τον ασθενή.");
+            } else {
+                exams_table.setModel(DbUtils.resultSetToTableModel(rs2));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    private void newDiagnosis() {
+        try {
+            if (diagnosis_text.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Παρακαλώ συμπληρώστε το πεδίο της διάγνωσης!");
+            } else {
+                java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+                LogIn_Stuff login_stuff = new LogIn_Stuff();
+                String user_id = login_stuff.stuff_userId();
+                String fullname = patient_name.getText();
+                String diagnosis = diagnosis_text.getText().trim();
+                String query = "INSERT INTO diagnosis VALUES(NULL, (SELECT doctor_id FROM doctor WHERE doctor_id='" + user_id + "'), (SELECT user_id FROM user WHERE last_name ='" + fullname + "'), '" + diagnosis + "', DEFAULT)";
+                PreparedStatement pst = con.prepareStatement(query);
+                pst.executeUpdate();
+
+                JOptionPane.showMessageDialog(this, "Η διάγνωση αποθηκεύτηκε με επιτυχία!");
+                diagnosis_text.setText("");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+   
+    
+    private void back_Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_Button1ActionPerformed
         dispose();
         new Doctor().setVisible(true);
     }//GEN-LAST:event_back_Button1ActionPerformed
 
     private void search_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_buttonActionPerformed
-        
-        if(patient_name.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this,("Συμπληρώστε το όνομα του ασθενή!"));
-            
+
+        if (patient_name.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, ("Συμπληρώστε το όνομα του ασθενή!"));
+
+        } else {
+            getDiagnosis();
+            getTestResults();
         }
-        else {
-            try{
-                java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");                
-                LogIn_Stuff login_stuff = new LogIn_Stuff();
-                String user_id = login_stuff.stuff_userId();                
-                String fullname = patient_name.getText();
-                String query1 = "SELECT CONCAT(first_name,' ',last_name) AS Ονοματεπώνυμο, textbox AS Διάγνωση, DATE(diagnosis_date) AS Ημερομηνία FROM diagnosis INNER JOIN user on patient_id = user_id WHERE last_name ='"+fullname+"' AND doctor_id='"+user_id+"' ";
-                PreparedStatement pst = con.prepareStatement(query1);
-                ResultSet rs = pst.executeQuery();
-
-                if(!rs.isBeforeFirst()) {
-                    history_table.setModel(new DefaultTableModel(null,new String[]{"Ονοματεπώνυμο", "Διάγνωση", "Ημερομηνία"}));
-                    JOptionPane.showMessageDialog(this, "Δεν υπάρχει ιστορικό για αυτό τον ασθενή."); 
-                }
-                else {
-                history_table.setModel(DbUtils.resultSetToTableModel(rs));                
-                }
-
-                String query2 = "SELECT CONCAT(first_name,' ', last_name) AS Ονοματεπώνυμο, test_title AS Τύπος_εξέτασης, test_date AS Ημερομηνία, TO_BASE64(test_file) AS Αρχείο_εξέτασης FROM test_results INNER JOIN user on patient_id=user_id WHERE last_name ='"+fullname+"' ";
-                PreparedStatement pst2 = con.prepareStatement(query2);
-                ResultSet rs2 = pst2.executeQuery();
-
-                if(!rs2.isBeforeFirst()) {
-                    exams_table.setModel(new DefaultTableModel(null,new String[]{"Ονοματεπώνυμο", "Τύπος_εξέτασης", "Ημερομηνία", "Αρχείο_εξέτασης"}));
-                    JOptionPane.showMessageDialog(this, "Δεν υπάρχουν εξετάσεις για αυτό τον ασθενή."); 
-                }
-
-                else {
-                    exams_table.setModel(DbUtils.resultSetToTableModel(rs2));                
-
-                }   
-        } catch(Exception e){
-            JOptionPane.showMessageDialog(null,e);
-            }            
-     }
-        
     }//GEN-LAST:event_search_buttonActionPerformed
 
     private void save_DiagnosisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_DiagnosisActionPerformed
@@ -268,27 +299,7 @@ public class Doctor_Patients extends javax.swing.JFrame {
             
         }
         else {
-            try {
-
-                if(diagnosis_text.getText().trim().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Παρακαλώ συμπληρώστε το πεδίο της διάγνωσης!"); 
-                } 
-                else {
-                    java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-                    LogIn_Stuff login_stuff = new LogIn_Stuff();
-                    String user_id = login_stuff.stuff_userId();                     
-                    String fullname = patient_name.getText();
-                    String diagnosis = diagnosis_text.getText().trim();
-                    String query = "INSERT INTO diagnosis VALUES(NULL, (SELECT doctor_id FROM doctor WHERE doctor_id='"+user_id+"'), (SELECT user_id FROM user WHERE last_name ='"+fullname+"'), '"+diagnosis+"', DEFAULT)";
-                    PreparedStatement pst = con.prepareStatement(query);
-                    pst.executeUpdate(); 
-
-                    JOptionPane.showMessageDialog(this, "Η διάγνωση αποθηκεύτηκε με επιτυχία!"); 
-                    diagnosis_text.setText("");                    
-                }
-            } catch(Exception e){
-                JOptionPane.showMessageDialog(null,e);
-            }
+            newDiagnosis();
         }
         
     }//GEN-LAST:event_save_DiagnosisActionPerformed
