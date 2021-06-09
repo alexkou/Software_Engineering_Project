@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static projectt.Patient_Prescription.jTable1;
 
 /**
  *
@@ -28,8 +29,71 @@ public class Patient_Kartela extends javax.swing.JFrame {
     public Patient_Kartela() {
         IconFontSwing.register(FontAwesome.getIconFont());  
         initComponents();
+        prescriptionSelect();
+        diagnosis();
     }
 
+    private static void prescriptionSelect(){
+        DefaultTableModel model = (DefaultTableModel) exams_table1.getModel();
+        model.setRowCount(0); 
+        try
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+            String query1 = "SELECT test_id FROM test_results";
+            PreparedStatement pst = con.prepareStatement(query1);
+            ResultSet rs = pst.executeQuery();
+              
+            
+             
+             while(rs.next())
+                {
+                   String test_id = Integer.toString(rs.getInt("test_id"));
+                   String tbData[]={test_id};
+                   DefaultTableModel tb1Model =(DefaultTableModel) exams_table1.getModel();
+                   
+                   tb1Model.addRow(tbData);
+                }
+             con.close();
+             
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            
+        }   
+        
+          
+    }
+    
+    private static void diagnosis(){
+        DefaultTableModel model = (DefaultTableModel) exams_table.getModel();
+        model.setRowCount(0); 
+        try
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+            String query2 = "SELECT diagnosis_id FROM diagnosis";
+            PreparedStatement pst2 = con.prepareStatement(query2);
+            ResultSet rs2 = pst2.executeQuery();
+              
+            
+             
+             while(rs2.next())
+                {
+                   String diagnosis_id = Integer.toString(rs2.getInt("diagnosis_id"));
+                   String tbData[]={diagnosis_id};
+                   DefaultTableModel tb1Model =(DefaultTableModel) exams_table.getModel();
+                   
+                   tb1Model.addRow(tbData);
+                }
+             con.close();
+             
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            
+        } 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,8 +123,6 @@ public class Patient_Kartela extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,7 +148,7 @@ public class Patient_Kartela extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Όνομα Εργαστηριακής Εξέτασης"
+                "ID Εργαστηριακής Εξέτασης"
             }
         ));
         exams_table.setEnabled(false);
@@ -133,7 +195,7 @@ public class Patient_Kartela extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Όνομα Εργαστηριακής Εξέτασης"
+                "ID Εργαστηριακής Εξέτασης"
             }
         ));
         exams_table1.setEnabled(false);
@@ -157,26 +219,6 @@ public class Patient_Kartela extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(0, 0, 0));
-        jButton5.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Προβολή");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
-        jButton6.setBackground(new java.awt.Color(0, 0, 0));
-        jButton6.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Προβολή");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -196,8 +238,7 @@ public class Patient_Kartela extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton3))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(142, 142, 142)
@@ -212,9 +253,7 @@ public class Patient_Kartela extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -236,13 +275,6 @@ public class Patient_Kartela extends javax.swing.JFrame {
                         .addGap(24, 24, 24))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -298,66 +330,6 @@ public class Patient_Kartela extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        DefaultTableModel model = (DefaultTableModel) exams_table1.getModel();
-        model.setRowCount(0);
-        try
-        {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-            String query1 = "SELECT test_id FROM test_result";
-            PreparedStatement pst = con.prepareStatement(query1);
-            ResultSet rs = pst.executeQuery();
-              
-            
-             
-             while(rs.next())
-                {
-                   String test_id = Integer.toString(rs.getInt("test_id"));
-                   String tbData[]={test_id};
-                   DefaultTableModel tb1Model =(DefaultTableModel) exams_table1.getModel();
-                   
-                   tb1Model.addRow(tbData);
-                }
-             con.close();
-             
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,"Δεν υπάρχει καταχωρημένη εξέταση!");
-        }  
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-         DefaultTableModel model = (DefaultTableModel) exams_table.getModel();
-        model.setRowCount(0);
-        try
-        {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-            String query1 = "SELECT diagnosis_id FROM diagnosis";
-            PreparedStatement pst = con.prepareStatement(query1);
-            ResultSet rs = pst.executeQuery();
-              
-            
-             
-             while(rs.next())
-                {
-                   String diagnosis_id = Integer.toString(rs.getInt("diagnosis_id"));
-                   String tbData[]={diagnosis_id};
-                   DefaultTableModel tb1Model =(DefaultTableModel) exams_table.getModel();
-                   
-                   tb1Model.addRow(tbData);
-                }
-             con.close();
-             
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,"Δεν υπάρχει καταχωρημένη διάγνωση!");
-        } 
-    }//GEN-LAST:event_jButton6ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -395,13 +367,11 @@ public class Patient_Kartela extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back_Button1;
-    private javax.swing.JTable exams_table;
-    private javax.swing.JTable exams_table1;
+    static javax.swing.JTable exams_table;
+    static javax.swing.JTable exams_table1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
