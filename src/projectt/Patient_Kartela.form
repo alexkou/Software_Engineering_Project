@@ -68,7 +68,6 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jButton2" alignment="0" min="-2" pref="163" max="-2" attributes="0"/>
                       <Component id="jButton3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton5" min="-2" pref="163" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
@@ -88,10 +87,7 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButton6" min="-2" pref="163" max="-2" attributes="0"/>
-                              <Component id="jButton4" min="-2" pref="163" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jButton4" min="-2" pref="163" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -121,16 +117,6 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jButton5" min="-2" pref="32" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jButton6" min="-2" pref="32" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jButton2" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
                               <Component id="jButton4" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
@@ -211,7 +197,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="1" rowCount="0">
-                        <Column editable="true" title="&#x38c;&#x3bd;&#x3bf;&#x3bc;&#x3b1; &#x395;&#x3c1;&#x3b3;&#x3b1;&#x3c3;&#x3c4;&#x3b7;&#x3c1;&#x3b9;&#x3b1;&#x3ba;&#x3ae;&#x3c2; &#x395;&#x3be;&#x3ad;&#x3c4;&#x3b1;&#x3c3;&#x3b7;&#x3c2;" type="java.lang.Object"/>
+                        <Column editable="true" title="ID &#x395;&#x3c1;&#x3b3;&#x3b1;&#x3c3;&#x3c4;&#x3b7;&#x3c1;&#x3b9;&#x3b1;&#x3ba;&#x3ae;&#x3c2; &#x395;&#x3be;&#x3ad;&#x3c4;&#x3b1;&#x3c3;&#x3b7;&#x3c2;" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -228,6 +214,9 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="8"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -337,7 +326,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="1" rowCount="0">
-                        <Column editable="true" title="&#x38c;&#x3bd;&#x3bf;&#x3bc;&#x3b1; &#x395;&#x3c1;&#x3b3;&#x3b1;&#x3c3;&#x3c4;&#x3b7;&#x3c1;&#x3b9;&#x3b1;&#x3ba;&#x3ae;&#x3c2; &#x395;&#x3be;&#x3ad;&#x3c4;&#x3b1;&#x3c3;&#x3b7;&#x3c2;" type="java.lang.Object"/>
+                        <Column editable="true" title="ID &#x395;&#x3c1;&#x3b3;&#x3b1;&#x3c3;&#x3c4;&#x3b7;&#x3c1;&#x3b9;&#x3b1;&#x3ba;&#x3ae;&#x3c2; &#x395;&#x3be;&#x3ad;&#x3c4;&#x3b1;&#x3c3;&#x3b7;&#x3c2;" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -354,6 +343,9 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="8"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -402,40 +394,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton5">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="14" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="&#x3a0;&#x3c1;&#x3bf;&#x3b2;&#x3bf;&#x3bb;&#x3ae;"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton6">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="14" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="&#x3a0;&#x3c1;&#x3bf;&#x3b2;&#x3bf;&#x3bb;&#x3ae;"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
