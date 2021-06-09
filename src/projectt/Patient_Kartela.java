@@ -39,7 +39,7 @@ public class Patient_Kartela extends javax.swing.JFrame {
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3308/project", "root", "");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
             String query1 = "SELECT test_id FROM test_results";
             PreparedStatement pst = con.prepareStatement(query1);
             ResultSet rs = pst.executeQuery();
@@ -71,7 +71,7 @@ public class Patient_Kartela extends javax.swing.JFrame {
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3308/project", "root", "");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
             String query2 = "SELECT diagnosis_id FROM diagnosis";
             PreparedStatement pst2 = con.prepareStatement(query2);
             ResultSet rs2 = pst2.executeQuery();

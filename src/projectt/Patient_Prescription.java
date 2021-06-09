@@ -35,7 +35,7 @@ public class Patient_Prescription extends javax.swing.JFrame {
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3308/project", "root", "");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
             String query1 = "SELECT prescription_id FROM prescription";
             PreparedStatement pst = con.prepareStatement(query1);
             ResultSet rs = pst.executeQuery();
@@ -206,7 +206,7 @@ public class Patient_Prescription extends javax.swing.JFrame {
      String  prescription_id =tb1Model.getValueAt(jTable1.getSelectedRow(),0).toString();
      try{
      Class.forName("com.mysql.cj.jdbc.Driver");
-     java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3308/project", "root", "");
+     java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
      String query1 = "SELECT * FROM prescription WHERE prescription_id = '"+prescription_id+"'";
      PreparedStatement pst = con.prepareStatement(query1);
      ResultSet rs = pst.executeQuery();
