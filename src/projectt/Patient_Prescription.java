@@ -34,6 +34,7 @@ public class Patient_Prescription extends javax.swing.JFrame {
         model.setRowCount(0); 
         try
         {
+            LogIn_Patient login_patient = new LogIn_Patient();
             Class.forName("com.mysql.cj.jdbc.Driver");
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
             String query1 = "SELECT prescription_id FROM prescription";
