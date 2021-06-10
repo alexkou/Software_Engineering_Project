@@ -17,6 +17,9 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static projectt.Patient_Prescription.jTable1;
+import java.io.File;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 
 /**
  *
@@ -283,7 +286,37 @@ public class Patient_Kartela extends javax.swing.JFrame {
     }//GEN-LAST:event_back_Button1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        try{
+                //the file path
+               File file = new File("C:\\Users\\samsng\\Desktop\\folder\\Text.txt");
+               //if the file not exist create one
+               if(!file.exists()){
+                   file.createNewFile();
+               }
+               
+               FileWriter fw = new FileWriter(file.getAbsoluteFile());
+               BufferedWriter bw = new BufferedWriter(fw);
+               
+               //loop for jtable rows
+               for(int i = 0; i < jTable1.getRowCount(); i++){
+                   //loop for jtable column
+                   for(int j = 0; j < jTable1.getColumnCount(); j++){
+                       bw.write(jTable1.getModel().getValueAt(i, j)+" ");
+                   }
+                   //break line at the begin 
+                   //break line at the end 
+                   bw.write("\n_________\n");
+               }
+               //close BufferedWriter
+               bw.close();
+               //close FileWriter 
+               fw.close();
+               JOptionPane.showMessageDialog(null, "Data Exported");
+               
+               }catch(Exception ex){
+                   ex.printStackTrace();
+               }
+           
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
