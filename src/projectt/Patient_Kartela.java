@@ -288,7 +288,7 @@ public class Patient_Kartela extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try{
                 //the file path
-               File file = new File("C:\\Users\\samsng\\Desktop\\folder\\Text.txt");
+               File file = new File("Text.txt");
                //if the file not exist create one
                if(!file.exists()){
                    file.createNewFile();
@@ -311,7 +311,7 @@ public class Patient_Kartela extends javax.swing.JFrame {
                bw.close();
                //close FileWriter 
                fw.close();
-               JOptionPane.showMessageDialog(null, "Data Exported");
+               JOptionPane.showMessageDialog(null, "Επιτυχής αποθήκευση");
                
                }catch(Exception ex){
                    ex.printStackTrace();
