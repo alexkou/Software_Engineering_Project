@@ -26,10 +26,10 @@ public class Patient_Prescription extends javax.swing.JFrame {
      */
     public Patient_Prescription() {
         initComponents();
-        prescriptionSelect();
+        getPrescription();
     }
 
-    private static void prescriptionSelect(){
+    private static void getPrescription(){
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0); 
         try

@@ -10,6 +10,8 @@ import jiconfont.swing.IconFontSwing;
 import java.awt.Color;
 import java.awt.event.*;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
@@ -26,8 +28,102 @@ public class Patient_Visit extends javax.swing.JFrame {
     public Patient_Visit() {
         IconFontSwing.register(FontAwesome.getIconFont());        
         initComponents();
+        getAppointment();
     }
 
+    private static void getAppointment(){
+        
+        if((jCheckBox1.isSelected() == false) && (jCheckBox2.isSelected() == false) && (jCheckBox3.isSelected() == false)) { 
+            JOptionPane.showMessageDialog(null,"Διάλεξε είδος ραντεβού");
+        }
+        else if(((jCheckBox1.isSelected() == true) && (jCheckBox2.isSelected() == true)||((jCheckBox1.isSelected() == true) && (jCheckBox3.isSelected() == true))||((jCheckBox2.isSelected() == true) && (jCheckBox3.isSelected() == true)))){
+            JOptionPane.showMessageDialog(null,"Διάλεξε ένα είδος ραντεβού!");
+        }
+        else{
+             try {
+                if(jCheckBox1.isSelected() == true){
+                    getVisits();
+                }
+                if(jCheckBox2.isSelected() == true){
+                    getTestApp();
+                }
+                if(jCheckBox3.isSelected() == true){
+                    getVacAppointment();
+                }
+            } catch(Exception e) {
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }
+
+    }
+    
+    private static void getVisits(){
+        try{
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+        String query1 = "SELECT app_id,app_type FROM appointment WHERE app_type = 'visit'";
+                PreparedStatement pst = con.prepareStatement(query1);
+                ResultSet rs = pst.executeQuery();
+                while(rs.next())
+                {
+                   String app_id = Integer.toString(rs.getInt("app_id"));
+                   String app_type =rs.getString("app_type");
+                   String tbData[]= {app_id,app_type};
+                   DefaultTableModel tb1Model =(DefaultTableModel)jTable1.getModel();
+                   tb1Model.addRow(tbData);
+                }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Patient_Visit.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Patient_Visit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private static void getTestApp(){
+        try{
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+        String sql = "SELECT app_id,app_type FROM appointment WHERE app_type = 'tests' ";
+                PreparedStatement pst = con.prepareStatement(sql);
+                ResultSet rs = pst.executeQuery();
+                while(rs.next())
+                {
+                   String app_id = Integer.toString(rs.getInt("app_id"));
+                   String app_type =rs.getString("app_type");
+                   String tbData[]= {app_id,app_type};
+                   DefaultTableModel tb1Model =(DefaultTableModel)jTable1.getModel();
+                   tb1Model.addRow(tbData);
+                }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Patient_Visit.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Patient_Visit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private static void getVacAppointment()
+    {
+        try{
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+        String sql = "SELECT app_id,app_type FROM appointment WHERE app_type = = 'covid_vaccine' ";
+                PreparedStatement pst = con.prepareStatement(sql);
+                ResultSet rs = pst.executeQuery();
+                while(rs.next())
+                {
+                   String app_id = Integer.toString(rs.getInt("app_id"));
+                   String app_type =rs.getString("app_type");
+                   String tbData[]= {app_id,app_type};
+                   DefaultTableModel tb1Model =(DefaultTableModel)jTable1.getModel();
+                   tb1Model.addRow(tbData);
+                }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Patient_Visit.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Patient_Visit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,7 +139,6 @@ public class Patient_Visit extends javax.swing.JFrame {
         back_Button1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
@@ -88,16 +183,6 @@ public class Patient_Visit extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setBackground(new java.awt.Color(0, 0, 0));
-        jButton7.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("Προβολή Ραντεβού");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-
         jCheckBox1.setText("Επίσκεψη");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,6 +191,11 @@ public class Patient_Visit extends javax.swing.JFrame {
         });
 
         jCheckBox2.setText("Εξετάσεις");
+        jCheckBox2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCheckBox2MouseClicked(evt);
+            }
+        });
         jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox2ActionPerformed(evt);
@@ -171,14 +261,11 @@ public class Patient_Visit extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton8)
                             .addComponent(jLabel4)
                             .addComponent(DateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 356, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -213,9 +300,7 @@ public class Patient_Visit extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(68, 68, 68)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -255,61 +340,25 @@ public class Patient_Visit extends javax.swing.JFrame {
     }//GEN-LAST:event_back_Button1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        if((jCheckBox1.isSelected() == false) && (jCheckBox2.isSelected() == false) && (jCheckBox3.isSelected() == false)) {   
-            JOptionPane.showMessageDialog(this,("Επιλέξτε είδος ραντεβού!"));
-        }
-        else{
-             try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-                if(jCheckBox1.isSelected() == true){
-                String query1 = "SELECT app_id,app_type FROM appointment WHERE app_type = 'visit'";
-                PreparedStatement pst = con.prepareStatement(query1);
-                ResultSet rs = pst.executeQuery();
-                while(rs.next())
-                {
-                   String app_id = Integer.toString(rs.getInt("app_id"));
-                   String app_type =rs.getString("app_type");
-                   String tbData[]= {app_id,app_type};
-                   DefaultTableModel tb1Model =(DefaultTableModel)jTable1.getModel();
-                   tb1Model.addRow(tbData);
-                }
-                }
-                if(jCheckBox2.isSelected() == true){
-                String sql = "SELECT app_id,app_type FROM appointment WHERE app_type = 'tests' ";
-                PreparedStatement pst = con.prepareStatement(sql);
-                ResultSet rs = pst.executeQuery();
-                while(rs.next())
-                {
-                   String app_id = Integer.toString(rs.getInt("app_id"));
-                   String app_type =rs.getString("app_type");
-                   String tbData[]= {app_id,app_type};
-                   DefaultTableModel tb1Model =(DefaultTableModel)jTable1.getModel();
-                   tb1Model.addRow(tbData);
-                }
-                }
-                if(jCheckBox3.isSelected() == true){
-                String sql = "SELECT app_id,app_type FROM appointment WHERE app_type = = 'covid_vaccine' ";
-                PreparedStatement pst = con.prepareStatement(sql);
-                ResultSet rs = pst.executeQuery();
-                while(rs.next())
-                {
-                   String app_id = Integer.toString(rs.getInt("app_id"));
-                   String app_type =rs.getString("app_type");
-                   String tbData[]= {app_id,app_type};
-                   DefaultTableModel tb1Model =(DefaultTableModel)jTable1.getModel();
-                   tb1Model.addRow(tbData);
-                }
-                }
-            } catch(Exception e) {
-                JOptionPane.showMessageDialog(this,"Δεν υπάρχει καταχωρημένο ραντεβού!");
+        try
+        {
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+            if(true){
+            
+            String query1= "DELETE FROM  WHERE user_id=";
+            PreparedStatement pst = con.prepareStatement(query1);
+            int rs = pst.executeUpdate();
+            JOptionPane.showMessageDialog(this,("Επιτυχής Αφαίρεση!"));
             }
+                    
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         if(((jCheckBox1.isSelected() == false) && (jCheckBox2.isSelected() == false) && (jCheckBox3.isSelected() == false)) || DateChooser.getDate() == null ) {   
@@ -333,6 +382,10 @@ public class Patient_Visit extends javax.swing.JFrame {
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jCheckBox2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox2MouseClicked
+        
+    }//GEN-LAST:event_jCheckBox2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -373,11 +426,10 @@ public class Patient_Visit extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser DateChooser;
     private javax.swing.JButton back_Button1;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
+    static javax.swing.JCheckBox jCheckBox1;
+    static javax.swing.JCheckBox jCheckBox2;
+    static javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -385,7 +437,7 @@ public class Patient_Visit extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    static javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

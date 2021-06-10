@@ -30,18 +30,18 @@ public class Patient_Kartela extends javax.swing.JFrame {
     public Patient_Kartela() {
         IconFontSwing.register(FontAwesome.getIconFont());  
         initComponents();
-        prescriptionSelect();
-        diagnosis();
+        getTestResults();
+        getDiagnosis();
     }
 
-    private static void prescriptionSelect(){
-        DefaultTableModel model = (DefaultTableModel) exams_table1.getModel();
+    private static void getTestResults(){
+        DefaultTableModel model = (DefaultTableModel) jTable4.getModel();
         model.setRowCount(0); 
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-            String query1 = "SELECT test_id FROM test_results";
+            String query1 = "SELECT prescription_id FROM prescription";
             PreparedStatement pst = con.prepareStatement(query1);
             ResultSet rs = pst.executeQuery();
               
@@ -49,9 +49,9 @@ public class Patient_Kartela extends javax.swing.JFrame {
              
              while(rs.next())
                 {
-                   String test_id = Integer.toString(rs.getInt("test_id"));
-                   String tbData[]={test_id};
-                   DefaultTableModel tb1Model =(DefaultTableModel) exams_table1.getModel();
+                   String prescription_id = Integer.toString(rs.getInt("prescription_id"));
+                   String tbData[]={prescription_id};
+                   DefaultTableModel tb1Model =(DefaultTableModel) jTable4.getModel();
                    
                    tb1Model.addRow(tbData);
                 }
@@ -61,13 +61,13 @@ public class Patient_Kartela extends javax.swing.JFrame {
             Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception e) {
             
-        }   
+        }
         
           
     }
     
-    private static void diagnosis(){
-        DefaultTableModel model = (DefaultTableModel) exams_table2.getModel();
+    private static void getDiagnosis(){
+        DefaultTableModel model = (DefaultTableModel) jTable3.getModel();
         model.setRowCount(0); 
         try
         {
@@ -83,7 +83,7 @@ public class Patient_Kartela extends javax.swing.JFrame {
                 {
                    String diagnosis_id = Integer.toString(rs2.getInt("diagnosis_id"));
                    String tbData[]={diagnosis_id};
-                   DefaultTableModel tb1Model =(DefaultTableModel) exams_table2.getModel();
+                   DefaultTableModel tb1Model =(DefaultTableModel) jTable3.getModel();
                    
                    tb1Model.addRow(tbData);
                 }
@@ -111,14 +111,12 @@ public class Patient_Kartela extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jTabbedPane3 = new javax.swing.JTabbedPane();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        exams_table1 = new javax.swing.JTable();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        exams_table2 = new javax.swing.JTable();
-        jTabbedPane4 = new javax.swing.JTabbedPane();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jTabbedPane5 = new javax.swing.JTabbedPane();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
 
@@ -157,65 +155,63 @@ public class Patient_Kartela extends javax.swing.JFrame {
 
         jTabbedPane3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        exams_table1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID Εργαστηριακής Εξέτασης"
+                "ID Εξέτασης"
             }
         ));
-        exams_table1.setEnabled(false);
-        exams_table1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTable4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                exams_table1MouseClicked(evt);
+                jTable4MouseClicked(evt);
             }
         });
-        jScrollPane3.setViewportView(exams_table1);
+        jScrollPane4.setViewportView(jTable4);
 
-        jTabbedPane3.addTab("Εξετάσεις", jScrollPane3);
+        jTabbedPane3.addTab("Εξετάσεις", jScrollPane4);
 
-        exams_table2.setModel(new javax.swing.table.DefaultTableModel(
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID Διάγνωσεις"
+                "ID Διάγνωσης"
             }
         ));
-        exams_table2.setEnabled(false);
-        exams_table2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                exams_table2MouseClicked(evt);
+                jTable3MouseClicked(evt);
             }
         });
-        jScrollPane5.setViewportView(exams_table2);
+        jScrollPane2.setViewportView(jTable3);
 
-        jTabbedPane3.addTab("Διαγνώσεις", jScrollPane5);
+        jTabbedPane3.addTab("Διαγνώσεις", jScrollPane2);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID Ασθενή", "Είδος Τεστ", "Ημερομηνία Διεξαγωγής"
+                "ID Ασθενή", "Τίτλος Τεστ", "Ημερομηνία Τεστ"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jTabbedPane4.addTab("Λεπτομέρειες Εξέτασης", jScrollPane1);
+        jTabbedPane3.addTab("Λεπτομέρειες Εξέτασης", jScrollPane1);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID Ασθενή", "ID Γιατρού", "Διάγνωση", "Ημερομηνία Διάγνωσης"
+                "ID Γιατρού", "ID Ασθενή", "Textbox", "Ημερομηνία Διάγνωσης"
             }
         ));
         jScrollPane6.setViewportView(jTable2);
 
-        jTabbedPane5.addTab("Λεπτομέρειες Διάγνωσης", jScrollPane6);
+        jTabbedPane3.addTab("Λεπτομέρειες Διάγνωσης", jScrollPane6);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -230,19 +226,14 @@ public class Patient_Kartela extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 848, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTabbedPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTabbedPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton3)))
+                        .addGap(65, 65, 65)
+                        .addComponent(jButton3)
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -255,18 +246,15 @@ public class Patient_Kartela extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTabbedPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(36, 36, 36)
-                                .addComponent(jTabbedPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(108, 108, 108)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(31, 31, 31))))
         );
 
@@ -298,9 +286,9 @@ public class Patient_Kartela extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void exams_table1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exams_table1MouseClicked
-     DefaultTableModel tb1Model =(DefaultTableModel)exams_table1.getModel();
-     String  test_id =tb1Model.getValueAt(exams_table1.getSelectedRow(),0).toString();
+    private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
+     DefaultTableModel tb1Model =(DefaultTableModel)jTable4.getModel();
+     String  test_id =tb1Model.getValueAt(jTable4.getSelectedRow(),0).toString();
      try{
      Class.forName("com.mysql.cj.jdbc.Driver");
      java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
@@ -308,10 +296,10 @@ public class Patient_Kartela extends javax.swing.JFrame {
      PreparedStatement pst = con.prepareStatement(query1);
      ResultSet rs = pst.executeQuery();
      if(rs.next()) {
-        String patient_id = Integer.toString(rs.getInt("patient_id"));
+        String doctor_id = Integer.toString(rs.getInt("patient_id"));
         String test_title = rs.getString("test_title");
         String test_date = rs.getString("test_date");
-        String tbData[]={patient_id,test_title,test_date};
+        String tbData[]={doctor_id,test_title,test_date};
         DefaultTableModel tb1Model1 =(DefaultTableModel) jTable1.getModel();
                    
         tb1Model1.addRow(tbData);
@@ -323,11 +311,11 @@ public class Patient_Kartela extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Patient_Prescription.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_exams_table1MouseClicked
+    }//GEN-LAST:event_jTable4MouseClicked
 
-    private void exams_table2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exams_table2MouseClicked
-     DefaultTableModel tb1Model =(DefaultTableModel)exams_table2.getModel();
-     String  diagnosis_id =tb1Model.getValueAt(exams_table2.getSelectedRow(),0).toString();
+    private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
+     DefaultTableModel tb1Model =(DefaultTableModel)jTable3.getModel();
+     String  diagnosis_id =tb1Model.getValueAt(jTable3.getSelectedRow(),0).toString();
      try{
      Class.forName("com.mysql.cj.jdbc.Driver");
      java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
@@ -340,9 +328,9 @@ public class Patient_Kartela extends javax.swing.JFrame {
         String textbox = rs.getString("textbox");
         String diagnosis_date = rs.getString("diagnosis_date");
         String tbData[]={doctor_id,patient_id,textbox,diagnosis_date};
-        DefaultTableModel tb1Model2 =(DefaultTableModel) jTable2.getModel();
+        DefaultTableModel tb1Model1 =(DefaultTableModel) jTable2.getModel();
                    
-        tb1Model2.addRow(tbData);
+        tb1Model1.addRow(tbData);
         
      }
      con.close();
@@ -351,7 +339,7 @@ public class Patient_Kartela extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Patient_Prescription.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_exams_table2MouseClicked
+    }//GEN-LAST:event_jTable3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -390,21 +378,19 @@ public class Patient_Kartela extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back_Button1;
-    static javax.swing.JTable exams_table1;
-    static javax.swing.JTable exams_table2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane6;
     static javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTabbedPane jTabbedPane4;
-    private javax.swing.JTabbedPane jTabbedPane5;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    static javax.swing.JTable jTable1;
+    static javax.swing.JTable jTable2;
+    static javax.swing.JTable jTable3;
+    static javax.swing.JTable jTable4;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
