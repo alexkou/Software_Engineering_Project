@@ -5,6 +5,18 @@
  */
 package projectt;
 
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.time.LocalTime;
+import java.text.DateFormat; 
+import java.text.ParseException;
+import java.text.SimpleDateFormat; 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Nikolas
@@ -34,14 +46,14 @@ public class Visit_Creation extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        firstname = new javax.swing.JTextField();
+        lastname = new javax.swing.JTextField();
+        doctorname = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        timePicker1 = new com.github.lgooddatepicker.components.TimePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,29 +62,34 @@ public class Visit_Creation extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/A4AD5659B5D44610AB530DF0BAB8279D.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
         jLabel2.setText("Επίσκεψη σε γιατρό");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel3.setText("Όνομα");
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel4.setText("Επώνυμο");
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel5.setText("Γιατρός");
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel6.setText("Ημερομηνία");
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+
+        jButton1.setText("Δημιουργία ραντεβού");
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doctor.jpg"))); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel7.setText("Ώρα");
-
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Δημιουργία ραντεβού");
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doctor.jpg"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -96,11 +113,11 @@ public class Visit_Creation extends javax.swing.JFrame {
                             .addComponent(jLabel7))
                         .addGap(96, 96, 96)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField3)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                            .addComponent(jTextField4))
+                            .addComponent(doctorname, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                            .addComponent(firstname)
+                            .addComponent(lastname)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(timePicker1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -111,36 +128,37 @@ public class Visit_Creation extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(firstname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lastname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(doctorname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                        .addGap(106, 106, 106)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(28, 28, 28))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(timePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(95, 95, 95)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -163,6 +181,66 @@ public class Visit_Creation extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        
+        if (firstname.getText().trim().isEmpty() || lastname.getText().trim().isEmpty() || doctorname.getText().trim().isEmpty()) 
+        {
+            JOptionPane.showMessageDialog(this,("Συμπληρώστε όλα τα πεδία"));
+        }
+        else{
+            try{
+                String firstName = firstname.getText();
+                String lastName = lastname.getText();
+                String doctorName = doctorname.getText();
+                
+                Date date = jDateChooser1.getDate();
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+                String strDate = dateFormat.format(date);
+                
+                LocalTime time = timePicker1.getTime();
+                DateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
+                String strTime = timeFormat.format(time);
+                
+                String fullDate  = strDate + " " + strTime;
+                
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+                Date appdate = formatter.parse(fullDate);
+                
+                String apptype = "visit";
+                
+                try{
+                    
+                    Class.forName("com.mysql.cj.jdbc.Driver");
+                    java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+                    
+                    String query = "INSERT INTO appointment VALUES"
+                            + "(NULL,'SELECT user_id from user WHERE user.first_name = "+firstName+" && user.last_name = "+lastName+"' , '"+apptype+"', '"+appdate+"')";
+                    
+                    PreparedStatement pst = con.prepareStatement(query);
+                    pst.executeUpdate();
+                    
+                    
+                    JOptionPane.showMessageDialog(this, "Η εγγραφή ολοκληρώθηκε με επιτυχία!");
+                    this.setVisible(false);
+                    new LogIn_Patient().setVisible(true);
+                    
+                    
+                    con.close();
+                } catch(Exception e) {  
+                    JOptionPane.showMessageDialog(null,e);
+                    
+                }
+                
+                
+            } catch(ParseException ex) {
+                Logger.getLogger(Visit_Creation.class.getName()).log(Level.SEVERE,null,ex);  
+
+            }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+   }
     /**
      * @param args the command line arguments
      */
@@ -199,6 +277,8 @@ public class Visit_Creation extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField doctorname;
+    private javax.swing.JTextField firstname;
     private javax.swing.JButton jButton1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
@@ -210,9 +290,7 @@ public class Visit_Creation extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField lastname;
+    private com.github.lgooddatepicker.components.TimePicker timePicker1;
     // End of variables declaration//GEN-END:variables
 }
