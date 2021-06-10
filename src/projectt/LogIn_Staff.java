@@ -17,12 +17,12 @@ import java.awt.Color;
  *
  * @author Marinos
  */
-public class LogIn_Stuff extends javax.swing.JFrame {
+public class LogIn_Staff extends javax.swing.JFrame {
 
-    private static String stuff_userId;
+    private static String staff_userId;
 
     /** Creates new form LogIn_P */
-    public LogIn_Stuff() {
+    public LogIn_Staff() {
         IconFontSwing.register(FontAwesome.getIconFont());                
         initComponents();
     }
@@ -42,8 +42,9 @@ public class LogIn_Stuff extends javax.swing.JFrame {
         password_text = new javax.swing.JTextField();
         username_text = new javax.swing.JTextField();
         Username = new javax.swing.JTextField();
-        stuff_text = new javax.swing.JTextField();
-        connect_stuff = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        staff_text = new javax.swing.JTextField();
+        connect_staff = new javax.swing.JButton();
         back_Button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,14 +53,12 @@ public class LogIn_Stuff extends javax.swing.JFrame {
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/A4AD5659B5D44610AB530DF0BAB8279D.jpeg"))); // NOI18N
 
-
         password_text.setBackground(new java.awt.Color(150, 235, 240));
         password_text.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         password_text.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         password_text.setText("Συνθηματικό");
         password_text.setBorder(null);
         password_text.setFocusable(false);
-
 
         username_text.setBackground(new java.awt.Color(150, 235, 240));
         username_text.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -71,20 +70,22 @@ public class LogIn_Stuff extends javax.swing.JFrame {
 
         Username.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
+        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton1.setContentAreaFilled(false);
 
-        stuff_text.setBackground(new java.awt.Color(150, 235, 240));
-        stuff_text.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        stuff_text.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        stuff_text.setText("Προσωπικό Νοσοκομείου");
-        stuff_text.setBorder(null);
-        stuff_text.setFocusable(false);
+        staff_text.setBackground(new java.awt.Color(150, 235, 240));
+        staff_text.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        staff_text.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        staff_text.setText("Προσωπικό Νοσοκομείου");
+        staff_text.setBorder(null);
+        staff_text.setFocusable(false);
 
-        connect_stuff.setBackground(new java.awt.Color(0, 0, 0));
-        connect_stuff.setForeground(new java.awt.Color(255, 255, 255));
-        connect_stuff.setText("Σύνδεση");
-        connect_stuff.addActionListener(new java.awt.event.ActionListener() {
+        connect_staff.setBackground(new java.awt.Color(0, 0, 0));
+        connect_staff.setForeground(new java.awt.Color(255, 255, 255));
+        connect_staff.setText("Σύνδεση");
+        connect_staff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                connect_stuffActionPerformed(evt);
+                connect_staffActionPerformed(evt);
             }
         });
 
@@ -104,7 +105,7 @@ public class LogIn_Stuff extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(360, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(stuff_text)
+                    .addComponent(staff_text)
                     .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 360, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -113,8 +114,9 @@ public class LogIn_Stuff extends javax.swing.JFrame {
                     .addComponent(username_text, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                     .addComponent(Password)
                     .addComponent(password_text)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Username)
-                    .addComponent(connect_stuff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(connect_staff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
@@ -129,7 +131,7 @@ public class LogIn_Stuff extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(logo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(stuff_text, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(staff_text, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(username_text, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -138,9 +140,10 @@ public class LogIn_Stuff extends javax.swing.JFrame {
                 .addComponent(password_text, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(connect_stuff, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(connect_staff, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54))
         );
 
@@ -175,7 +178,7 @@ public class LogIn_Stuff extends javax.swing.JFrame {
 
                 String user_type = rs.getString("user_type");
                 String user_id = rs.getString("user_id");
-                LogIn_Stuff.stuff_userId = user_id;
+                LogIn_Staff.staff_userId = user_id;
 
                 switch (user_type) {
                     case "doctor":
@@ -213,13 +216,13 @@ public class LogIn_Stuff extends javax.swing.JFrame {
         }
     }
     
-    public String stuff_userId() {
-        return LogIn_Stuff.stuff_userId;
+    public String staff_userId() {
+        return LogIn_Staff.staff_userId;
     }
     
-    private void connect_stuffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connect_stuffActionPerformed
+    private void connect_staffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connect_staffActionPerformed
         userVerification();
-    }//GEN-LAST:event_connect_stuffActionPerformed
+    }//GEN-LAST:event_connect_staffActionPerformed
 
     private void back_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_ButtonActionPerformed
         dispose();
@@ -243,21 +246,23 @@ public class LogIn_Stuff extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LogIn_Stuff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LogIn_Staff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LogIn_Stuff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LogIn_Staff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LogIn_Stuff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LogIn_Staff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LogIn_Stuff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LogIn_Staff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LogIn_Stuff().setVisible(true);
+                new LogIn_Staff().setVisible(true);
             }
         });
     }
@@ -266,11 +271,12 @@ public class LogIn_Stuff extends javax.swing.JFrame {
     private javax.swing.JPasswordField Password;
     private javax.swing.JTextField Username;
     private javax.swing.JButton back_Button;
-    private javax.swing.JButton connect_stuff;
+    private javax.swing.JButton connect_staff;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logo;
     private javax.swing.JTextField password_text;
-    private javax.swing.JTextField stuff_text;
+    private javax.swing.JTextField staff_text;
     private javax.swing.JTextField username_text;
     // End of variables declaration//GEN-END:variables
 

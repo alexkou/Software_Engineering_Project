@@ -354,9 +354,9 @@ public class Patient_Visit extends javax.swing.JFrame {
             }
                     
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Admin_Staff.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Admin_Staff.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 

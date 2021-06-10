@@ -204,8 +204,8 @@ public class Doctor_Prescription extends javax.swing.JFrame {
 
             try {
                 java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-                LogIn_Stuff login_stuff = new LogIn_Stuff();
-                String user_id = login_stuff.stuff_userId();
+                LogIn_Staff login_staff = new LogIn_Staff();
+                String user_id = login_staff.staff_userId();
                 String query = "INSERT INTO prescription VALUES(NULL, (SELECT doctor_id FROM doctor WHERE doctor_id= '" + user_id + "'), (SELECT user_id FROM user WHERE last_name ='" + fullname + "'), '" + medicines + "', '" + instructions_text + "')";
                 PreparedStatement pst = con.prepareStatement(query);
                 pst.executeUpdate();

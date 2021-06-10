@@ -215,8 +215,8 @@ public class Doctor_Patients extends javax.swing.JFrame {
 
         try {
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-            LogIn_Stuff login_stuff = new LogIn_Stuff();
-            String user_id = login_stuff.stuff_userId();
+            LogIn_Staff login_staff = new LogIn_Staff();
+            String user_id = login_staff.staff_userId();
             String fullname = patient_name.getText();
             String query1 = "SELECT CONCAT(first_name,' ',last_name) AS Ονοματεπώνυμο, textbox AS Διάγνωση, DATE(diagnosis_date) AS Ημερομηνία FROM diagnosis INNER JOIN user on patient_id = user_id WHERE last_name ='" + fullname + "' AND doctor_id='" + user_id + "' ";
             PreparedStatement pst = con.prepareStatement(query1);
@@ -259,8 +259,8 @@ public class Doctor_Patients extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Παρακαλώ συμπληρώστε το πεδίο της διάγνωσης!");
             } else {
                 java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-                LogIn_Stuff login_stuff = new LogIn_Stuff();
-                String user_id = login_stuff.stuff_userId();
+                LogIn_Staff login_staff = new LogIn_Staff();
+                String user_id = login_staff.staff_userId();
                 String fullname = patient_name.getText();
                 String diagnosis = diagnosis_text.getText().trim();
                 String query = "INSERT INTO diagnosis VALUES(NULL, (SELECT doctor_id FROM doctor WHERE doctor_id='" + user_id + "'), (SELECT user_id FROM user WHERE last_name ='" + fullname + "'), '" + diagnosis + "', DEFAULT)";
