@@ -131,7 +131,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x394;&#x3b9;&#x3b1;&#x3c7;&#x3b5;&#x3af;&#x3c1;&#x3b9;&#x3c3;&#x3b7; &#x3a0;&#x3c1;&#x3bf;&#x3c3;&#x3c9;&#x3c0;&#x3b9;&#x3ba;&#x3bf;&#x3cd;"/>
+            <Property name="text" type="java.lang.String" value="&#x3a0;&#x3c1;&#x3bf;&#x3c3;&#x3c9;&#x3c0;&#x3b9;&#x3ba;&#x3cc;"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>

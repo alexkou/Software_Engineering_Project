@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.text.BadLocationException;
 
 /**
@@ -327,21 +328,7 @@ public class Supplies extends javax.swing.JFrame {
 
     private void jTextField16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField16ActionPerformed
         // TODO add your handling code here:
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-            String query = "SELECT stock FROM supplies WHERE supply='gantia'";
-            PreparedStatement pst = con.prepareStatement(query);
-            int rs = pst.executeUpdate();
-            
-            
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Supplies.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Supplies.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        
-
+      
     }//GEN-LAST:event_jTextField16ActionPerformed
     private static void test() {
         try{
@@ -394,7 +381,7 @@ public class Supplies extends javax.swing.JFrame {
     
     if(jTextField5.getText().trim().isEmpty() || jTextField8.getText().trim().isEmpty() || jTextField7.getText().trim().isEmpty() || jTextField10.getText().trim().isEmpty() ||jTextField18.getText().trim().isEmpty())
     {
-        jLabel3.setText("Συπληρώστε τα κενά πεδία με μηδέν(0)!");
+        JOptionPane.showMessageDialog(this,("Συπληρώστε τα κενά πεδία με μηδέν (0)!"));
     }  
     else
     {   
@@ -420,7 +407,7 @@ public class Supplies extends javax.swing.JFrame {
         
         if(g2<0 || m2<0 || ga2<0 || fx2<0 || n2<0)
         {
-            jLabel2.setText("Δεν επαρκούν οι προμήθειες");
+            JOptionPane.showMessageDialog(this,("Δεν επαρκούν οι προμήθειες."));
         }
         else{
             try
