@@ -295,16 +295,16 @@ public class Admin_Stuff extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(177, 177, 177))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(39, 39, 39)))
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(39, 39, 39)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -339,8 +339,9 @@ public class Admin_Stuff extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 31, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -354,7 +355,7 @@ public class Admin_Stuff extends javax.swing.JFrame {
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -459,7 +460,7 @@ public class Admin_Stuff extends javax.swing.JFrame {
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-            String query1 = "SELECT * FROM user WHERE user_type='doctor'";
+            String query1 = "SELECT * FROM user WHERE user_type= 'vaccines manager' OR user_type='doctor' ";
             PreparedStatement pst = con.prepareStatement(query1);
             ResultSet rs = pst.executeQuery();
               
@@ -531,6 +532,15 @@ public class Admin_Stuff extends javax.swing.JFrame {
             String query1= "DELETE FROM user WHERE user_id="+jTextField2.getText();
             PreparedStatement pst = con.prepareStatement(query1);
             int rs = pst.executeUpdate();
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextField6.setText("");
+            jTextField7.setText("");
+            jTextField8.setText("");
+            jTextField9.setText("");
+            jTextField10.setText("");
             JOptionPane.showMessageDialog(this,("Επιτυχής Αφαίρεση!"));
             
                     
@@ -547,17 +557,49 @@ public class Admin_Stuff extends javax.swing.JFrame {
         jLabel11.setText("");
     if(jTextField2.getText().isEmpty() ||jTextField3.getText().isEmpty() ||jTextField4.getText().isEmpty() ||jTextField5.getText().isEmpty() ||jTextField6.getText().isEmpty() ||jTextField7.getText().isEmpty() ||jTextField8.getText().isEmpty() ||jTextField9.getText().isEmpty() ||jTextField10.getText().isEmpty() )
     {
-         jLabel11.setText("Συμπληρώστε όλα τα πεδία!");
+         JOptionPane.showMessageDialog(this,("Συμπληρώστε όλα τα πεδία!"));
     }
     else {
         try
         {
-            
+            int d = Integer.parseInt(jTextField2.getText().trim());
             Class.forName("com.mysql.cj.jdbc.Driver");
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
             String query1= "INSERT INTO user VALUES ('"+jTextField2.getText()+"','"+jTextField3.getText()+"','"+jTextField4.getText()+"','"+jTextField5.getText()+"','"+jTextField6.getText()+"','"+jTextField7.getText()+"','"+jTextField8.getText()+"','"+jTextField9.getText()+"','"+jTextField10.getText()+"')";
             PreparedStatement pst = con.prepareStatement(query1);
             int rs = pst.executeUpdate();
+            
+            if(jTextField10.getText().equals("doctor")){
+                String query2= "INSERT INTO doctor VALUES ('"+d+"')";
+                PreparedStatement pst1=con.prepareStatement(query2);
+                int rs1 = pst1.executeUpdate();
+            }
+            else if(jTextField10.getText().equals("lab analyst")){
+                String query3= "INSERT INTO lab_analyst VALUES ('"+d+"')";
+                PreparedStatement pst3=con.prepareStatement(query3);
+                int rs3 = pst3.executeUpdate();
+            }
+            else if(jTextField10.getText().equals("vaccines manager")){
+                String query4= "INSERT INTO vaccines_manager VALUES ('"+d+"')";
+                PreparedStatement pst4=con.prepareStatement(query4);
+                int rs4 = pst4.executeUpdate();
+            }
+            else if (jTextField10.getText().equals("reception")){
+                String query5= "INSERT INTO vaccines_manager VALUES ('"+d+"')";
+                PreparedStatement pst5=con.prepareStatement(query5);
+                int rs5 = pst5.executeUpdate();
+            }
+            else ;
+                   
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextField6.setText("");
+            jTextField7.setText("");
+            jTextField8.setText("");
+            jTextField9.setText("");
+            jTextField10.setText("");
             JOptionPane.showMessageDialog(this,("Επιτυχής Προσθήκη!"));
            
                     
@@ -576,7 +618,7 @@ public class Admin_Stuff extends javax.swing.JFrame {
      jLabel11.setText("");
     if(jTextField2.getText().isEmpty() ||jTextField3.getText().isEmpty() ||jTextField4.getText().isEmpty() ||jTextField5.getText().isEmpty() ||jTextField6.getText().isEmpty() ||jTextField7.getText().isEmpty() ||jTextField8.getText().isEmpty() ||jTextField9.getText().isEmpty() ||jTextField10.getText().isEmpty() )
     {
-         jLabel11.setText("Συμπληρώστε όλα τα πεδία!");
+         JOptionPane.showMessageDialog(this,("Συμπληρώστε όλα τα πεδία!"));
     }
     else {
         try
@@ -587,6 +629,15 @@ public class Admin_Stuff extends javax.swing.JFrame {
             String query1= "UPDATE user SET user_id = '"+jTextField2.getText()+"', username ='"+jTextField3.getText()+"',first_name='"+jTextField4.getText()+"',last_name='"+jTextField5.getText()+"',email='"+jTextField6.getText()+"',birthday='"+jTextField7.getText()+"',password='"+jTextField8.getText()+"', phone_num='"+jTextField9.getText()+"', user_type='"+jTextField10.getText()+"' WHERE user_id ='"+jTextField2.getText()+"'";
             PreparedStatement pst = con.prepareStatement(query1);
             int rs = pst.executeUpdate();
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextField6.setText("");
+            jTextField7.setText("");
+            jTextField8.setText("");
+            jTextField9.setText("");
+            jTextField10.setText("");
             JOptionPane.showMessageDialog(this,("Επιτυχής Ενημέρωση!"));
            
                     

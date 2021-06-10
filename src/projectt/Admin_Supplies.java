@@ -309,7 +309,7 @@ public class Admin_Supplies extends javax.swing.JFrame {
         
         if(jTextField3.getText().trim().isEmpty() || jTextField4.getText().trim().isEmpty() || jTextField5.getText().trim().isEmpty() || jTextField6.getText().trim().isEmpty() ||jTextField7.getText().trim().isEmpty() ||jTextField8.getText().trim().isEmpty() ||jTextField9.getText().trim().isEmpty() ||jTextField10.getText().trim().isEmpty() )
         {
-            jLabel11.setText("Συμπληρώστε όλα τα πεδία!");
+            JOptionPane.showMessageDialog(this,("Συμπληρώστε όλα τα πεδία!"));
         }
         else{
             try
