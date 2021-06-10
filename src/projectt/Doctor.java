@@ -194,7 +194,7 @@ public class Doctor extends javax.swing.JFrame {
     private void Button_signoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_signoutActionPerformed
         // TODO add your handling code here:;
         dispose();
-        new LogIn_Stuff().setVisible(true);
+        new LogIn_Staff().setVisible(true);
     }//GEN-LAST:event_Button_signoutActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

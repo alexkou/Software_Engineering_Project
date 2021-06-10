@@ -173,8 +173,8 @@ public class Lab_analyst_Tests extends javax.swing.JFrame {
     private void getTestsApp() {
         try {
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-            LogIn_Stuff login_stuff = new LogIn_Stuff();
-            String user_id = login_stuff.stuff_userId();            
+            LogIn_Staff login_staff = new LogIn_Staff();
+            String user_id = login_staff.staff_userId();            
             String sql = "SELECT CONCAT(first_name,' ',last_name) AS Ονοματεπώνυμο, app_date AS Ημερομηνία, tests.test_title AS Τύπος_Εξέτασης, TO_BASE64(test_file) AS Αποτελέσματα FROM appointment INNER JOIN user on patient_id=user_id INNER JOIN tests ON app_id=test_id INNER JOIN test_results on tests.test_id = test_results.test_id WHERE lab_id='"+user_id+"' ";
             PreparedStatement pst = con.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();

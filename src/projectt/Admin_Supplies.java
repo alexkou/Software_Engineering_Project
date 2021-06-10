@@ -5,12 +5,16 @@
  */
 package projectt;
 
+import icons.FontAwesome;
+import java.awt.Color;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import jiconfont.swing.IconFontSwing;
 
 /**
  *
@@ -22,6 +26,7 @@ public class Admin_Supplies extends javax.swing.JFrame {
      * Creates new form Admin_Supplies
      */
     public Admin_Supplies() {
+        IconFontSwing.register(FontAwesome.getIconFont());  
         initComponents();
     }
 
@@ -58,6 +63,7 @@ public class Admin_Supplies extends javax.swing.JFrame {
         jTextField10 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
+        back_Button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -250,17 +256,31 @@ public class Admin_Supplies extends javax.swing.JFrame {
         jTextField2.setBorder(null);
         jTextField2.setFocusable(false);
 
+        back_Button.setIcon(IconFontSwing.buildIcon(FontAwesome.ARROW_CIRCLE_LEFT, 50, Color.black));
+        back_Button.setBorderPainted(false);
+        back_Button.setContentAreaFilled(false);
+        back_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back_ButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(345, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(back_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 322, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -268,35 +288,141 @@ public class Admin_Supplies extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(back_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1249, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 813, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        jLabel11.setText("");
-        String m = jTextField3.getText();               
+    private void displayFail(){
+        JOptionPane.showMessageDialog(this,("Συμπληρώστε όλα τα πεδία!"));
+    }
+    private void validateFields(){
+        
+    }
+    private void show_SuppliesForm(){
+        
+    }
+    private void displaySuccess(){
+        
+    }
+    private void saveSupplies(){
+        int mm = Integer.parseInt(jTextField3.getText().trim());               
+        int gg =Integer.parseInt(jTextField4.getText().trim());
+        int gaa = Integer.parseInt(jTextField5.getText().trim());                
+        int fxx = Integer.parseInt(jTextField6.getText().trim());        
+        int nn = Integer.parseInt(jTextField7.getText().trim());
+        int rr = Integer.parseInt(jTextField8.getText().trim());
+        int ss = Integer.parseInt(jTextField9.getText().trim());
+        int kk = Integer.parseInt(jTextField10.getText().trim());
+        
+         try{
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+            String query = "SELECT stock FROM supplies WHERE supply='maskes'";
+            PreparedStatement pst = con.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+            
+            
+            String query1 = "SELECT stock FROM supplies WHERE supply='gantia'";
+            PreparedStatement pst1 = con.prepareStatement(query1);
+            ResultSet rs1 = pst1.executeQuery();
+            
+            String query2 = "SELECT stock FROM supplies WHERE supply='gazes'";
+            PreparedStatement pst2 = con.prepareStatement(query2);
+            ResultSet rs2 = pst2.executeQuery();
+            
+            String query3 = "SELECT stock FROM supplies WHERE supply='formes_xeirourgeiou'";
+            PreparedStatement pst3 = con.prepareStatement(query3);
+            ResultSet rs3 = pst3.executeQuery();
+            
+            String query4 = "SELECT stock FROM supplies WHERE supply='narthikes'";
+            PreparedStatement pst4 = con.prepareStatement(query4);
+            ResultSet rs4 = pst4.executeQuery();
+            
+            String query5 = "SELECT stock FROM supplies WHERE supply='rammata'";
+            PreparedStatement pst5 = con.prepareStatement(query5);
+            ResultSet rs5 = pst5.executeQuery();            
+            
+            String query6 = "SELECT stock FROM supplies WHERE supply='surigges'";
+            PreparedStatement pst6 = con.prepareStatement(query6);
+            ResultSet rs6 = pst6.executeQuery();
+            
+            String query7 = "SELECT stock FROM supplies WHERE supply='krevatia'";
+            PreparedStatement pst7 = con.prepareStatement(query7);
+            ResultSet rs7 = pst7.executeQuery();
+            
+            int m = (Integer) rs.getInt("stock");
+            int g = (Integer) rs1.getInt("stock");
+            int ga = (Integer) rs2.getInt("stock");
+            int fx = (Integer) rs3.getInt("stock");
+            int n = (Integer) rs4.getInt("stock");
+            int r = (Integer) rs5.getInt("stock");
+            int s = (Integer) rs6.getInt("stock");
+            int k = (Integer) rs7.getInt("stock");
+            
+            int m1 = m + mm;
+            int g1 = g +gg ;
+            int ga1 = ga + gaa;
+            int fx1  = fx + fxx;
+            int n1 = n + nn;
+            int r1 = r + rr;
+            int s1 = s + ss;
+            int k1 = k + kk;
+            
+            String queryy= "UPDATE supplies SET stock ='"+m1+"' WHERE supply='maskes'";
+            PreparedStatement pstt = con.prepareStatement(queryy);
+            int rss = pstt.executeUpdate();
+            
+            String queryy1= "UPDATE supplies SET price ='"+g1+"' WHERE supply='gantia'";
+            PreparedStatement pstt1 = con.prepareStatement(queryy1);
+            int rss1 = pstt1.executeUpdate();
+            
+            String queryy2= "UPDATE supplies SET price ='"+ga1+"' WHERE supply='gazes'";
+            PreparedStatement pstt2 = con.prepareStatement(queryy2);
+            int rss2 = pstt2.executeUpdate();
+          
+            String queryy3= "UPDATE supplies SET price ='"+fx1+"' WHERE supply='formes_xeirourgeiou'";
+            PreparedStatement pstt3 = con.prepareStatement(queryy3);
+            int rss3 = pst3.executeUpdate();
+            
+            String queryy4= "UPDATE supplies SET price ='"+n1+"' WHERE supply='narthikes'";
+            PreparedStatement pstt4 = con.prepareStatement(queryy4);
+            int rss4 = pst4.executeUpdate();
+            
+            String queryy5= "UPDATE supplies SET price ='"+r1+"' WHERE supply='rammata'";
+            PreparedStatement pstt5 = con.prepareStatement(queryy5);
+            int rss5 = pstt5.executeUpdate();
+            
+            String queryy6= "UPDATE supplies SET price ='"+s1+"' WHERE supply='surigges'";
+            PreparedStatement pstt6 = con.prepareStatement(queryy6);
+            int rss6 = pstt6.executeUpdate();
+            
+            String queryy7= "UPDATE supplies SET price ='"+k1+"' WHERE supply='krevatia'";
+            PreparedStatement pstt7 = con.prepareStatement(queryy7);
+            int rss7 = pstt7.executeUpdate();
+            
+            
+            }catch (SQLException ex) {
+            Logger.getLogger(Admin_Supplies.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
+    private void updatePrice(){
+     String m = jTextField3.getText();               
         String g =jTextField4.getText();
         String ga = jTextField5.getText();                
         String fx = jTextField6.getText();        
@@ -306,10 +432,10 @@ public class Admin_Supplies extends javax.swing.JFrame {
         String k= jTextField10.getText();
         
        
-        
+        //validateFeilds();
         if(jTextField3.getText().trim().isEmpty() || jTextField4.getText().trim().isEmpty() || jTextField5.getText().trim().isEmpty() || jTextField6.getText().trim().isEmpty() ||jTextField7.getText().trim().isEmpty() ||jTextField8.getText().trim().isEmpty() ||jTextField9.getText().trim().isEmpty() ||jTextField10.getText().trim().isEmpty() )
         {
-            JOptionPane.showMessageDialog(this,("Συμπληρώστε όλα τα πεδία!"));
+            displayFail();
         }
         else{
             try
@@ -356,7 +482,7 @@ public class Admin_Supplies extends javax.swing.JFrame {
             String query7= "UPDATE supplies SET price ='"+k1+"' WHERE supply='krevatia'";
             PreparedStatement pst7 = con.prepareStatement(query7);
             int rs7 = pst7.executeUpdate();
-           new Final_Supplies().setVisible(true);
+           
                    
         } catch(Exception e) {
                JOptionPane.showMessageDialog(null,e);  
@@ -364,15 +490,28 @@ public class Admin_Supplies extends javax.swing.JFrame {
             }
             
         }
-        
-        
-        
-                     
+
+}
+    private void select_Calculate(){
+    new Final_Supplies().setVisible(true);
+}
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+      saveSupplies();   
+      updatePrice();
+      select_Calculate();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void back_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_ButtonActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new Admin().setVisible(true);
+    }//GEN-LAST:event_back_ButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -405,11 +544,13 @@ public class Admin_Supplies extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Admin_Supplies().setVisible(true);
+                //show_SuppliesForm();
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back_Button;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

@@ -203,11 +203,11 @@ public class Doctor_Appointments extends javax.swing.JFrame {
         }
         else {  
             try {
-                LogIn_Stuff login_stuff = new LogIn_Stuff();
+                LogIn_Staff login_staff = new LogIn_Staff();
                 java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 String date = sdf.format(DateChooser.getDate());
-                String user_id = login_stuff.stuff_userId();
+                String user_id = login_staff.staff_userId();
                 String sql = "SELECT CONCAT(first_name,' ',last_name) AS Ονοματεπώνυμο, date_format(app_date,'%H:%i') AS Ώρα FROM appointment INNER JOIN user on patient_id=user_id INNER JOIN visit ON app_id=visit_id WHERE DATE(app_date)='"+date+"' AND visit.doctor_id='"+user_id+"' ";
                 PreparedStatement pst = con.prepareStatement(sql);
                 ResultSet rs = pst.executeQuery();

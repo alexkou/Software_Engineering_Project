@@ -124,6 +124,57 @@ public class Patient_Visit extends javax.swing.JFrame {
         }
     }
     
+    private static void removeAppointment(){
+        try
+        {
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+            String query1= "DELETE FROM appointment WHERE user_id="+jTable1.getSelectedRow();
+            PreparedStatement pst = con.prepareStatement(query1);
+            int rs = pst.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null,("Επιτυχής ακύρωση ραντεβού!"));
+            
+                    
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Admin_Staff.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin_Staff.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private static void createAppointment(){
+        try
+        {
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+            if(jCheckBox1.isSelected() == true)
+            {
+                String query1= "INSERT INTO appointment VALUES ('','','visit',"+DateChooser.getDate()+"')";
+                PreparedStatement pst = con.prepareStatement(query1);
+                int rs = pst.executeUpdate();
+            }
+            else if(jCheckBox2.isSelected() == true){
+                String query1= "INSERT INTO appointment VALUES ('','','tests',"+DateChooser.getDate()+"')";
+                PreparedStatement pst = con.prepareStatement(query1);
+                int rs = pst.executeUpdate();
+            }
+            else if(jCheckBox3.isSelected() == true){
+                String query1= "INSERT INTO appointment VALUES ('','','covid_vaccine',"+DateChooser.getDate()+"')";
+                PreparedStatement pst = con.prepareStatement(query1);
+                int rs = pst.executeUpdate();
+            }else;
+            JOptionPane.showMessageDialog(null,("Επιτυχής δημιουργεία ραντεβού!"));
+           
+                    
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Admin_Staff.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin_Staff.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -340,24 +391,7 @@ public class Patient_Visit extends javax.swing.JFrame {
     }//GEN-LAST:event_back_Button1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        try
-        {
-            
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-            if(true){
-            
-            String query1= "DELETE FROM  WHERE user_id=";
-            PreparedStatement pst = con.prepareStatement(query1);
-            int rs = pst.executeUpdate();
-            JOptionPane.showMessageDialog(this,("Επιτυχής Αφαίρεση!"));
-            }
-                    
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        removeAppointment();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -371,7 +405,7 @@ public class Patient_Visit extends javax.swing.JFrame {
             
         }
         else{
-            
+            createAppointment();
         }
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -423,7 +457,7 @@ public class Patient_Visit extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser DateChooser;
+    static com.toedter.calendar.JDateChooser DateChooser;
     private javax.swing.JButton back_Button1;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton8;

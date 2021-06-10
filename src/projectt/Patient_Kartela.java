@@ -58,7 +58,7 @@ public class Patient_Kartela extends javax.swing.JFrame {
              con.close();
              
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Admin_Staff.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception e) {
             
         }
@@ -90,7 +90,7 @@ public class Patient_Kartela extends javax.swing.JFrame {
              con.close();
              
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Admin_Stuff.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Admin_Staff.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception e) {
             
         } 

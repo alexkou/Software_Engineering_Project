@@ -26,7 +26,7 @@ public class Supplies extends javax.swing.JFrame {
      */
     public Supplies() {
         initComponents();
-        test();
+        getSupplies();
     }
 
     /**
@@ -330,14 +330,24 @@ public class Supplies extends javax.swing.JFrame {
         // TODO add your handling code here:
       
     }//GEN-LAST:event_jTextField16ActionPerformed
-    private static void test() {
+    private void choose_Supplies(){
+    
+    }
+    private void displayFail1(){
+        JOptionPane.showMessageDialog(this,("Δεν επαρκούν οι προμήθειες."));
+    }
+    private void displayFail2(){
+        JOptionPane.showMessageDialog(this,("Συπληρώστε τα κενά πεδία με μηδέν (0)!")); //εμφάνιση μηνύματος
+    }
+    private static void getSupplies() {
+        //Επιλογή από την βάση των προμηθειών
         try{
-            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-            String query = "SELECT stock FROM supplies WHERE supply='gantia'";
-            PreparedStatement pst = con.prepareStatement(query);
-            ResultSet rs = pst.executeQuery();
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", ""); //Σύνδεση με βάση
+            String query = "SELECT stock FROM supplies WHERE supply='gantia'"; // εντολή select
+            PreparedStatement pst = con.prepareStatement(query); //
+            ResultSet rs = pst.executeQuery(); //εκτελεση του query και αποθήκευση στο rs
             if(rs.next()) {
-               jTextField16.setText(""+rs.getInt("stock"));
+               jTextField16.setText(""+rs.getInt("stock")); //εμφάνιση αποτελέσματος σε int στο textfield
 
             }
             String query1 = "SELECT stock FROM supplies WHERE supply='maskes'";
@@ -372,19 +382,16 @@ public class Supplies extends javax.swing.JFrame {
             Logger.getLogger(Supplies.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        jLabel2.setText("");
-        jLabel3.setText("");
-        
-        
-    
-    if(jTextField5.getText().trim().isEmpty() || jTextField8.getText().trim().isEmpty() || jTextField7.getText().trim().isEmpty() || jTextField10.getText().trim().isEmpty() ||jTextField18.getText().trim().isEmpty())
+    private void saveSupplies(){
+        //έλεγχος για κενά πεδία και εμφάνιση μηνύματος
+        //check_Stock()
+        if(jTextField5.getText().trim().isEmpty() || jTextField8.getText().trim().isEmpty() || jTextField7.getText().trim().isEmpty() || jTextField10.getText().trim().isEmpty() ||jTextField18.getText().trim().isEmpty())
     {
-        JOptionPane.showMessageDialog(this,("Συπληρώστε τα κενά πεδία με μηδέν (0)!"));
+        displayFail2();
     }  
     else
     {   
+        //μετατροπη του περιεχομένου textfield σε int και εκτέλεση πράξεων για την αφαίρεση
         int g = Integer.parseInt(jTextField5.getText().trim());
         int g1 = Integer.parseInt(jTextField16.getText().trim());
         int g2 = g1-g;
@@ -404,15 +411,16 @@ public class Supplies extends javax.swing.JFrame {
         int n = Integer.parseInt(jTextField18.getText().trim());
         int n1 = Integer.parseInt(jTextField19.getText().trim());
         int n2 = n1-n;
-        
+        //έλεγχος για επάρκεια προμηθειών και εμφάνιση μηνυμάτων 
+        //check_Stock()
         if(g2<0 || m2<0 || ga2<0 || fx2<0 || n2<0)
         {
-            JOptionPane.showMessageDialog(this,("Δεν επαρκούν οι προμήθειες."));
+            displayFail1();
         }
         else{
             try
         {
-            
+            //ενημέρωση του table στην βάση παίρνωντας ως δεδομένα την αφαίρεση των προμηθειών 
             Class.forName("com.mysql.cj.jdbc.Driver");
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
             String query = "UPDATE supplies SET stock='"+g2+"' WHERE supply='gantia'";
@@ -444,10 +452,17 @@ public class Supplies extends javax.swing.JFrame {
             
         }
     }  
+    }
+    private void check_Stock(){
+        
+    }
+    private void show_SuppliesStock(){
         
         
-        
-        
+    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here       
+        saveSupplies(); 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -485,6 +500,7 @@ public class Supplies extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Supplies().setVisible(true);
+                //show_SuppliesStock();
             }
         });
     }

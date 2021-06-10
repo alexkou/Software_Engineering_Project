@@ -256,11 +256,11 @@ public class Vaccines_Manager extends javax.swing.JFrame {
     
     private void getVacAppointments() {
         try {
-            LogIn_Stuff login_stuff = new LogIn_Stuff();
+            LogIn_Staff login_staff = new LogIn_Staff();
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String date = sdf.format(DateChooser.getDate());
-            String user_id = login_stuff.stuff_userId();
+            String user_id = login_staff.staff_userId();
             String sql = "SELECT CONCAT(first_name,' ',last_name) AS Ονοματεπώνυμο, date_format(app_date,'%H:%i') AS Ώρα, vaccine_title As Εμβόλιο FROM appointment INNER JOIN user on patient_id=user_id INNER JOIN covid_vaccine ON app_id=vacc_app_id WHERE DATE(app_date)='" + date + "' AND  vacc_man_id='" + user_id + "' ";
             PreparedStatement pst = con.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
