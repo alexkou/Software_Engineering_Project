@@ -42,11 +42,11 @@ public class Patient_Kartela extends javax.swing.JFrame {
         model.setRowCount(0); 
         try
         {
-            LogIn_Patient login_patient = new LogIn_Patient();
+
             Class.forName("com.mysql.cj.jdbc.Driver");
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-            String patient_id = login_patient.patient_userId();
-            String query1 = "SELECT test_id FROM test_results WHERE patient_id = '"+patient_id+"'";
+
+            String query1 = "SELECT test_id FROM test_results ";
             PreparedStatement pst = con.prepareStatement(query1);
             ResultSet rs = pst.executeQuery();
               
