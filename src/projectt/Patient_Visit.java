@@ -60,7 +60,8 @@ public class Patient_Visit extends javax.swing.JFrame {
         LogIn_Patient login_patient = new LogIn_Patient();
         Class.forName("com.mysql.cj.jdbc.Driver");
         java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-        String query1 = "SELECT app_id,app_type FROM appointment WHERE app_type = 'visit'";
+        String patient_id = login_patient.patient_userId();
+        String query1 = "SELECT app_id,app_type FROM appointment WHERE app_type = 'visit' AND patient_id = '"+patient_id+"'";
                 PreparedStatement pst = con.prepareStatement(query1);
                 ResultSet rs = pst.executeQuery();
                 while(rs.next())
@@ -83,7 +84,8 @@ public class Patient_Visit extends javax.swing.JFrame {
         LogIn_Patient login_patient = new LogIn_Patient();
         Class.forName("com.mysql.cj.jdbc.Driver");
         java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-        String sql = "SELECT app_id,app_type FROM appointment WHERE app_type = 'tests' ";
+        String patient_id = login_patient.patient_userId();
+        String sql = "SELECT app_id,app_type FROM appointment WHERE app_type = 'tests' AND patient_id = '"+patient_id+"' ";
                 PreparedStatement pst = con.prepareStatement(sql);
                 ResultSet rs = pst.executeQuery();
                 while(rs.next())
@@ -107,7 +109,8 @@ public class Patient_Visit extends javax.swing.JFrame {
         LogIn_Patient login_patient = new LogIn_Patient();
         Class.forName("com.mysql.cj.jdbc.Driver");
         java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-        String sql = "SELECT app_id,app_type FROM appointment WHERE app_type = = 'covid_vaccine' ";
+        String patient_id = login_patient.patient_userId();
+        String sql = "SELECT app_id,app_type FROM appointment WHERE app_type = = 'covid_vaccine' AND patient_id = '"+patient_id+"' ";
                 PreparedStatement pst = con.prepareStatement(sql);
                 ResultSet rs = pst.executeQuery();
                 while(rs.next())
@@ -151,19 +154,20 @@ public class Patient_Visit extends javax.swing.JFrame {
             LogIn_Patient login_patient = new LogIn_Patient();
             Class.forName("com.mysql.cj.jdbc.Driver");
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+            String patient_id = login_patient.patient_userId();
             if(jCheckBox1.isSelected() == true)
             {
-                String query1= "INSERT INTO appointment VALUES ('','','visit',"+DateChooser.getDate()+"')";
+                String query1= "INSERT INTO appointment VALUES ('','"+patient_id+"','visit','"+DateChooser.getDate()+"')";
                 PreparedStatement pst = con.prepareStatement(query1);
                 int rs = pst.executeUpdate();
             }
             else if(jCheckBox2.isSelected() == true){
-                String query1= "INSERT INTO appointment VALUES ('','','tests',"+DateChooser.getDate()+"')";
+                String query1= "INSERT INTO appointment VALUES ('','"+patient_id+"','tests',"+DateChooser.getDate()+"')";
                 PreparedStatement pst = con.prepareStatement(query1);
                 int rs = pst.executeUpdate();
             }
             else if(jCheckBox3.isSelected() == true){
-                String query1= "INSERT INTO appointment VALUES ('','','covid_vaccine',"+DateChooser.getDate()+"')";
+                String query1= "INSERT INTO appointment VALUES ('','"+patient_id+"','covid_vaccine',"+DateChooser.getDate()+"')";
                 PreparedStatement pst = con.prepareStatement(query1);
                 int rs = pst.executeUpdate();
             }else;
