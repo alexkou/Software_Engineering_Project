@@ -54,8 +54,8 @@ public class Patient_Kartela extends javax.swing.JFrame {
              
              while(rs.next())
                 {
-                   String prescription_id = Integer.toString(rs.getInt("prescription_id"));
-                   String tbData[]={prescription_id};
+                   String test_id = Integer.toString(rs.getInt("test_id"));
+                   String tbData[]={test_id};
                    DefaultTableModel tb1Model =(DefaultTableModel) jTable4.getModel();
                    
                    tb1Model.addRow(tbData);

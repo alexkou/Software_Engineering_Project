@@ -131,7 +131,8 @@ public class Patient_Visit extends javax.swing.JFrame {
             
             Class.forName("com.mysql.cj.jdbc.Driver");
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-            String query1= "DELETE FROM appointment WHERE app_id="+jTable1.getSelectedRow();
+            int id = jTable1.getSelectedRow();
+            String query1= "DELETE FROM appointment WHERE app_id="+id;
             PreparedStatement pst = con.prepareStatement(query1);
             int rs = pst.executeUpdate();
             
