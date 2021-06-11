@@ -118,11 +118,6 @@ public class Supplies extends javax.swing.JFrame {
         jTextField4.setText("ΔΙΑΘΕΣΙΜΟΤΗΤΑ");
         jTextField4.setBorder(null);
         jTextField4.setFocusable(false);
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
 
         jTextField11.setBackground(new java.awt.Color(150, 235, 240));
         jTextField11.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -160,11 +155,6 @@ public class Supplies extends javax.swing.JFrame {
         jTextField16.setToolTipText("");
         jTextField16.setBorder(null);
         jTextField16.setFocusable(false);
-        jTextField16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField16ActionPerformed(evt);
-            }
-        });
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -182,11 +172,6 @@ public class Supplies extends javax.swing.JFrame {
         jTextField17.setText("ΝΑΡΘΗΚΕΣ");
         jTextField17.setBorder(null);
         jTextField17.setFocusable(false);
-        jTextField17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField17ActionPerformed(evt);
-            }
-        });
 
         jTextField18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField18.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -318,21 +303,6 @@ public class Supplies extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
-    private void jTextField17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField17ActionPerformed
-
-    private void jTextField16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField16ActionPerformed
-        // TODO add your handling code here:
-      
-    }//GEN-LAST:event_jTextField16ActionPerformed
-    private void choose_Supplies(){
-    
-    }
     private void displayFail1(){
         JOptionPane.showMessageDialog(this,("Δεν επαρκούν οι προμήθειες."));
     }
@@ -382,6 +352,7 @@ public class Supplies extends javax.swing.JFrame {
             Logger.getLogger(Supplies.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
     private void saveSupplies(){
         //έλεγχος για κενά πεδία και εμφάνιση μηνύματος
         //check_Stock()
@@ -453,15 +424,8 @@ public class Supplies extends javax.swing.JFrame {
         }
     }  
     }
-    private void check_Stock(){
-        
-    }
-    private void show_SuppliesStock(){
-        
-        
-    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here       
         saveSupplies(); 
     }//GEN-LAST:event_jButton1ActionPerformed
 
