@@ -338,8 +338,11 @@ public class Final_Supplies extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 private void select_Send(){
-    JOptionPane.showMessageDialog(this,("Επιτυχής Αποστολή!"));
+    
     //Αποστολή φόρμας σε Υπουργείο Υγείας
+}
+private void displaySuccess(){
+    JOptionPane.showMessageDialog(this,("Επιτυχής Αποστολή!"));
 }
 private void getSupplies(){
     
@@ -357,7 +360,7 @@ private void getSupplies(){
         jTextField8.setText("");
         jTextField9.setText("");
         
-        select_Send();
+        displaySuccess();
         
         
         
