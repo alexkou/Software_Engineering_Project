@@ -390,90 +390,11 @@ public class Admin_Staff extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
-        try
-        {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-            String query1 = "SELECT * FROM user WHERE user_type='lab analyst'";
-            PreparedStatement pst = con.prepareStatement(query1);
-            ResultSet rs = pst.executeQuery();
-              
-            
-             
-             while(rs.next())
-                {
-                   String user_id = Integer.toString(rs.getInt("user_id"));
-                   String username =rs.getString("username");
-                   String first_name =rs.getString("first_name");
-                   String last_name =rs.getString("last_name");
-                   String email =rs.getString("email");
-                   String birthday =rs.getString("birthday");
-                   String password = rs.getString("password");
-                   String phone_num = rs.getString("phone_num");
-                   String user_type =rs.getString("user_type");
-                   
-                   String tbData[]={user_id,username,first_name,last_name,email,birthday,password,phone_num,user_type};
-                   DefaultTableModel tb1Model =(DefaultTableModel)jTable1.getModel();
-                   
-                   tb1Model.addRow(tbData);
-                }
-             con.close();
-             
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Admin_Staff.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Admin_Staff.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
-        try
-        {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-            String query1 = "SELECT * FROM user WHERE user_type='reception'";
-            PreparedStatement pst = con.prepareStatement(query1);
-            ResultSet rs = pst.executeQuery();
-              
-            
-             
-             while(rs.next())
-                {
-                   String user_id = Integer.toString(rs.getInt("user_id"));
-                   String username =rs.getString("username");
-                   String first_name =rs.getString("first_name");
-                   String last_name =rs.getString("last_name");
-                   String email =rs.getString("email");
-                   String birthday =rs.getString("birthday");
-                   String password = rs.getString("password");
-                   String phone_num = rs.getString("phone_num");
-                   String user_type =rs.getString("user_type");
-                   
-                   String tbData[]={user_id,username,first_name,last_name,email,birthday,password,phone_num,user_type};
-                   DefaultTableModel tb1Model =(DefaultTableModel)jTable1.getModel();
-                   
-                   tb1Model.addRow(tbData);
-                }
-             con.close();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Admin_Staff.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Admin_Staff.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+private void showStaffType(){
+    
+}
+private void select_StaffType1(){
+     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         try
         {
@@ -509,74 +430,104 @@ public class Admin_Staff extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Admin_Staff.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
-        DefaultTableModel tb1Model =(DefaultTableModel)jTable1.getModel();
-        String tb1_user_id =tb1Model.getValueAt(jTable1.getSelectedRow(),0).toString();
-        String tb1_username =tb1Model.getValueAt(jTable1.getSelectedRow(),1).toString();
-        String tb1_first_name =tb1Model.getValueAt(jTable1.getSelectedRow(),2).toString();
-        String tb1_last_name =tb1Model.getValueAt(jTable1.getSelectedRow(),3).toString();
-        String tb1_email =tb1Model.getValueAt(jTable1.getSelectedRow(),4).toString();
-        String tb1_birthday =tb1Model.getValueAt(jTable1.getSelectedRow(),5).toString();
-        String tb1_password =tb1Model.getValueAt(jTable1.getSelectedRow(),6).toString();
-        String tb1_phone_num =tb1Model.getValueAt(jTable1.getSelectedRow(),7).toString();
-        String tb1_user_type =tb1Model.getValueAt(jTable1.getSelectedRow(),8).toString();
-        //set to textfield
-        jTextField2.setText(tb1_user_id);
-        jTextField3.setText(tb1_username);
-        jTextField4.setText(tb1_first_name);
-        jTextField5.setText(tb1_last_name);
-        jTextField6.setText(tb1_email);
-        jTextField7.setText(tb1_birthday);
-        jTextField8.setText(tb1_password);
-        jTextField9.setText(tb1_phone_num);
-        jTextField10.setText(tb1_user_type);
-     
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_jTable1MouseClicked
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+}
+private void select_StaffType2(){
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
         try
         {
-            
             Class.forName("com.mysql.cj.jdbc.Driver");
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-            String query1= "DELETE FROM user WHERE user_id="+jTextField2.getText();
+            String query1 = "SELECT * FROM user WHERE user_type='reception'";
             PreparedStatement pst = con.prepareStatement(query1);
-            int rs = pst.executeUpdate();
-            jTextField2.setText("");
-            jTextField3.setText("");
-            jTextField4.setText("");
-            jTextField5.setText("");
-            jTextField6.setText("");
-            jTextField7.setText("");
-            jTextField8.setText("");
-            jTextField9.setText("");
-            jTextField10.setText("");
-            JOptionPane.showMessageDialog(this,("Επιτυχής Αφαίρεση!"));
+            ResultSet rs = pst.executeQuery();
+              
             
-                    
+             
+             while(rs.next())
+                {
+                   String user_id = Integer.toString(rs.getInt("user_id"));
+                   String username =rs.getString("username");
+                   String first_name =rs.getString("first_name");
+                   String last_name =rs.getString("last_name");
+                   String email =rs.getString("email");
+                   String birthday =rs.getString("birthday");
+                   String password = rs.getString("password");
+                   String phone_num = rs.getString("phone_num");
+                   String user_type =rs.getString("user_type");
+                   
+                   String tbData[]={user_id,username,first_name,last_name,email,birthday,password,phone_num,user_type};
+                   DefaultTableModel tb1Model =(DefaultTableModel)jTable1.getModel();
+                   
+                   tb1Model.addRow(tbData);
+                }
+             con.close();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Admin_Staff.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(Admin_Staff.class.getName()).log(Level.SEVERE, null, ex);
         }
-          
-    }//GEN-LAST:event_jButton3ActionPerformed
-   
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        jLabel11.setText("");
+}
+private void select_StaffType3(){
+     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        try
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+            String query1 = "SELECT * FROM user WHERE user_type='lab analyst'";
+            PreparedStatement pst = con.prepareStatement(query1);
+            ResultSet rs = pst.executeQuery();
+              
+            
+             
+             while(rs.next())
+                {
+                   String user_id = Integer.toString(rs.getInt("user_id"));
+                   String username =rs.getString("username");
+                   String first_name =rs.getString("first_name");
+                   String last_name =rs.getString("last_name");
+                   String email =rs.getString("email");
+                   String birthday =rs.getString("birthday");
+                   String password = rs.getString("password");
+                   String phone_num = rs.getString("phone_num");
+                   String user_type =rs.getString("user_type");
+                   
+                   String tbData[]={user_id,username,first_name,last_name,email,birthday,password,phone_num,user_type};
+                   DefaultTableModel tb1Model =(DefaultTableModel)jTable1.getModel();
+                   
+                   tb1Model.addRow(tbData);
+                }
+             con.close();
+             
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Admin_Staff.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin_Staff.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
+private void getStaff(){
+    
+}
+private void returnStaff(){
+    
+}
+private void show_Accounts(){
+    
+}
+private void fill_Form(){
+    
+}
+private void select_AddStaff(){
+        
+}
+private void validateFields(){
+    
+}
+private void AddStaff(){
     if(jTextField2.getText().isEmpty() ||jTextField3.getText().isEmpty() ||jTextField4.getText().isEmpty() ||jTextField5.getText().isEmpty() ||jTextField6.getText().isEmpty() ||jTextField7.getText().isEmpty() ||jTextField8.getText().isEmpty() ||jTextField9.getText().isEmpty() ||jTextField10.getText().isEmpty() )
     {
-         JOptionPane.showMessageDialog(this,("Συμπληρώστε όλα τα πεδία!"));
+         displayFail();
     }
     else {
         try
@@ -619,7 +570,7 @@ public class Admin_Staff extends javax.swing.JFrame {
             jTextField8.setText("");
             jTextField9.setText("");
             jTextField10.setText("");
-            JOptionPane.showMessageDialog(this,("Επιτυχής Προσθήκη!"));
+            display_Success1();
            
                     
         } catch (ClassNotFoundException ex) {
@@ -628,16 +579,78 @@ public class Admin_Staff extends javax.swing.JFrame {
             Logger.getLogger(Admin_Staff.class.getName()).log(Level.SEVERE, null, ex);
         }
      }
-        
-             
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-     jLabel11.setText("");
+}
+private void display_Success1(){
+    JOptionPane.showMessageDialog(this,("Επιτυχής Προσθήκη!"));
+}
+private void display_Success2(){
+    JOptionPane.showMessageDialog(this,("Επιτυχής Ενημέρωση!"));
+}
+private void display_Success3(){
+    JOptionPane.showMessageDialog(this,("Επιτυχής Αφαίρεση!"));
+}
+private void displayFail(){
+    JOptionPane.showMessageDialog(this,("Συμπληρώστε όλα τα πεδία!"));
+}
+private void select_RemoveStaff(){
+    
+}
+private void removeStaff(){
+     try
+        {
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+            String query1= "DELETE FROM user WHERE user_id="+jTextField2.getText();
+            PreparedStatement pst = con.prepareStatement(query1);
+            int rs = pst.executeUpdate();
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextField6.setText("");
+            jTextField7.setText("");
+            jTextField8.setText("");
+            jTextField9.setText("");
+            jTextField10.setText("");
+            display_Success3();
+            
+                    
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Admin_Staff.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin_Staff.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
+private void select_UpdateStaff(){
+    
+}
+private void select_Update(){
+    DefaultTableModel tb1Model =(DefaultTableModel)jTable1.getModel();
+        String tb1_user_id =tb1Model.getValueAt(jTable1.getSelectedRow(),0).toString();
+        String tb1_username =tb1Model.getValueAt(jTable1.getSelectedRow(),1).toString();
+        String tb1_first_name =tb1Model.getValueAt(jTable1.getSelectedRow(),2).toString();
+        String tb1_last_name =tb1Model.getValueAt(jTable1.getSelectedRow(),3).toString();
+        String tb1_email =tb1Model.getValueAt(jTable1.getSelectedRow(),4).toString();
+        String tb1_birthday =tb1Model.getValueAt(jTable1.getSelectedRow(),5).toString();
+        String tb1_password =tb1Model.getValueAt(jTable1.getSelectedRow(),6).toString();
+        String tb1_phone_num =tb1Model.getValueAt(jTable1.getSelectedRow(),7).toString();
+        String tb1_user_type =tb1Model.getValueAt(jTable1.getSelectedRow(),8).toString();
+        //set to textfield
+        jTextField2.setText(tb1_user_id);
+        jTextField3.setText(tb1_username);
+        jTextField4.setText(tb1_first_name);
+        jTextField5.setText(tb1_last_name);
+        jTextField6.setText(tb1_email);
+        jTextField7.setText(tb1_birthday);
+        jTextField8.setText(tb1_password);
+        jTextField9.setText(tb1_phone_num);
+        jTextField10.setText(tb1_user_type);
+}
+private void UpdateStaff(){
     if(jTextField2.getText().isEmpty() ||jTextField3.getText().isEmpty() ||jTextField4.getText().isEmpty() ||jTextField5.getText().isEmpty() ||jTextField6.getText().isEmpty() ||jTextField7.getText().isEmpty() ||jTextField8.getText().isEmpty() ||jTextField9.getText().isEmpty() ||jTextField10.getText().isEmpty() )
     {
-         JOptionPane.showMessageDialog(this,("Συμπληρώστε όλα τα πεδία!"));
+         displayFail();
     }
     else {
         try
@@ -657,7 +670,7 @@ public class Admin_Staff extends javax.swing.JFrame {
             jTextField8.setText("");
             jTextField9.setText("");
             jTextField10.setText("");
-            JOptionPane.showMessageDialog(this,("Επιτυχής Ενημέρωση!"));
+            display_Success2();
            
                     
         } catch (ClassNotFoundException ex) {
@@ -666,6 +679,49 @@ public class Admin_Staff extends javax.swing.JFrame {
             Logger.getLogger(Admin_Staff.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+}
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+       select_StaffType3();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        select_StaffType2();
+          
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+       select_StaffType1();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        select_Update();
+     
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+       removeStaff();
+          
+    }//GEN-LAST:event_jButton3ActionPerformed
+   
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+      AddStaff();             
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    UpdateStaff();
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void back_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_ButtonActionPerformed
