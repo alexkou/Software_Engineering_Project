@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2021 at 03:31 PM
+-- Generation Time: Jun 12, 2021 at 01:49 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -58,7 +58,20 @@ CREATE TABLE `appointment` (
 
 INSERT INTO `appointment` (`app_id`, `patient_id`, `app_type`, `app_date`) VALUES
 (1, 3, 'tests', '2021-06-10 10:00:00'),
-(3, 3, 'visit', '2021-06-10 10:30:21');
+(3, 3, 'visit', '2021-06-10 10:30:21'),
+(4, 3, 'visit', '2021-06-10 03:00:00'),
+(5, 3, 'visit', '2021-06-10 03:00:00'),
+(6, 3, 'visit', '2021-06-10 03:00:00'),
+(7, 3, 'visit', '2021-06-10 03:00:00'),
+(8, 3, 'visit', '2021-06-10 03:00:00'),
+(9, 3, 'visit', '2021-06-10 03:00:00'),
+(10, 3, 'visit', '2021-06-10 03:00:00'),
+(11, 3, 'visit', '2021-06-10 03:00:00'),
+(12, 3, 'visit', '2021-06-10 03:00:00'),
+(13, 3, 'visit', '2021-06-10 03:00:00'),
+(14, 3, 'visit', '2021-06-10 03:00:00'),
+(15, 3, 'visit', '2021-06-10 03:00:00'),
+(16, 8, 'tests', '2021-06-12 01:45:21');
 
 -- --------------------------------------------------------
 
@@ -72,13 +85,6 @@ CREATE TABLE `asks_for` (
   `quantity` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `asks_for`
---
-
-INSERT INTO `asks_for` (`doctor_id`, `supply_id`, `quantity`) VALUES
-(4, 2, 30);
-
 -- --------------------------------------------------------
 
 --
@@ -88,7 +94,7 @@ INSERT INTO `asks_for` (`doctor_id`, `supply_id`, `quantity`) VALUES
 CREATE TABLE `covid_vaccine` (
   `vacc_app_id` int(50) NOT NULL,
   `vacc_man_id` int(50) NOT NULL,
-  `vaccine_title` varchar(20) NOT NULL
+  `vaccine_title` enum('AstraZeneca','PFizer','Moderna','Johnson&Johnson') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -119,16 +125,16 @@ INSERT INTO `diagnosis` (`diagnosis_id`, `doctor_id`, `patient_id`, `textbox`, `
 --
 
 CREATE TABLE `doctor` (
-  `doctor_id` int(15) NOT NULL,
-  `speciality` varchar(50) DEFAULT NULL
+  `doctor_id` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `doctor`
 --
 
-INSERT INTO `doctor` (`doctor_id`, `speciality`) VALUES
-(4, 'urologist');
+INSERT INTO `doctor` (`doctor_id`) VALUES
+(4),
+(36);
 
 -- --------------------------------------------------------
 
@@ -145,7 +151,8 @@ CREATE TABLE `lab_analyst` (
 --
 
 INSERT INTO `lab_analyst` (`lab_id`) VALUES
-(6);
+(6),
+(35);
 
 -- --------------------------------------------------------
 
@@ -166,7 +173,7 @@ CREATE TABLE `order` (
 --
 
 INSERT INTO `order` (`order_id`, `admin_id`, `supply_id`, `quantity`, `bill`) VALUES
-(2, 2, 1, 100, 200);
+(3, 2, 5, 30, NULL);
 
 -- --------------------------------------------------------
 
@@ -184,7 +191,8 @@ CREATE TABLE `patient` (
 --
 
 INSERT INTO `patient` (`patient_id`, `amka`) VALUES
-(3, '3735638');
+(3, '3735638'),
+(8, '43345456');
 
 -- --------------------------------------------------------
 
@@ -222,7 +230,8 @@ CREATE TABLE `reception` (
 --
 
 INSERT INTO `reception` (`reception_id`) VALUES
-(5);
+(5),
+(34);
 
 -- --------------------------------------------------------
 
@@ -233,16 +242,23 @@ INSERT INTO `reception` (`reception_id`) VALUES
 CREATE TABLE `supplies` (
   `supply_id` int(50) NOT NULL,
   `supply` varchar(50) NOT NULL,
-  `stock` int(10) DEFAULT NULL
+  `stock` int(10) DEFAULT NULL,
+  `price` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `supplies`
 --
 
-INSERT INTO `supplies` (`supply_id`, `supply`, `stock`) VALUES
-(1, 'gloves', 1000),
-(2, 'masks', 1000);
+INSERT INTO `supplies` (`supply_id`, `supply`, `stock`, `price`) VALUES
+(3, 'gantia', 1000, 0),
+(4, 'maskes', 1000, 0),
+(5, 'gazes', 500, 0),
+(6, 'formes_xeirourgeiou', 150, 0),
+(7, 'narthikes', 1000, 0),
+(8, 'rammata', 1500, 0),
+(9, 'surigges', 500, 0),
+(10, 'krevatia', 50, 0);
 
 -- --------------------------------------------------------
 
@@ -253,7 +269,7 @@ INSERT INTO `supplies` (`supply_id`, `supply`, `stock`) VALUES
 CREATE TABLE `tests` (
   `test_id` int(11) NOT NULL,
   `lab_id` int(50) NOT NULL,
-  `test_title` varchar(50) NOT NULL
+  `test_title` enum('blood','urine','mri','covidtest') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -261,7 +277,8 @@ CREATE TABLE `tests` (
 --
 
 INSERT INTO `tests` (`test_id`, `lab_id`, `test_title`) VALUES
-(1, 6, 'blood');
+(1, 6, 'blood'),
+(16, 35, 'mri');
 
 -- --------------------------------------------------------
 
@@ -281,6 +298,9 @@ CREATE TABLE `test_results` (
 --
 
 INSERT INTO `test_results` (`test_id`, `patient_id`, `test_title`, `test_date`) VALUES
+(1, 3, 'blood', '2021-05-31 16:24:30'),
+(1, 3, 'blood', '2021-05-31 16:24:30'),
+(1, 3, 'blood', '2021-05-31 16:24:30'),
 (1, 3, 'blood', '2021-05-31 16:24:30');
 
 -- --------------------------------------------------------
@@ -294,7 +314,7 @@ CREATE TABLE `user` (
   `username` varchar(100) DEFAULT NULL,
   `first_name` varchar(100) DEFAULT NULL,
   `last_name` varchar(100) DEFAULT NULL,
-  `e-mail` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
   `birthday` date DEFAULT NULL,
   `password` varchar(20) NOT NULL DEFAULT 'X',
   `phone_num` text DEFAULT NULL,
@@ -305,13 +325,17 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `username`, `first_name`, `last_name`, `e-mail`, `birthday`, `password`, `phone_num`, `user_type`) VALUES
+INSERT INTO `user` (`user_id`, `username`, `first_name`, `last_name`, `email`, `birthday`, `password`, `phone_num`, `user_type`) VALUES
 (2, 'NikolasAvra', 'Nikolaos', 'Avrantinis', 'nikolas.avra@gmail.com', '1999-03-01', '12345', '6948418105', 'admin'),
 (3, 'AlexKou', 'Alexandros', 'Koutsoukos', 'alexkou10@gmail.com', '1999-10-02', '1234567', '6983848575', 'patient'),
 (4, 'MarinosGiz', 'Marinos', 'Gizas', 'marinos16@gmail.com', '1998-03-02', 'marinos', '6984457765', 'doctor'),
 (5, 'CharaVas', 'Chara', 'Vasilakopoulou', 'charavasilak93@gmail.com', '1999-10-10', 'charavas', NULL, 'reception'),
-(6, 'Venogrom', 'George', 'Nikolakopoulos', 'venogrom33@hotmail.com', '1999-05-12', 'venogrom', NULL, 'lab analyst'),
-(7, 'Bliaro', 'Vasilios', 'Liarommatis', 'bliaro13@yahoo.com', '1998-02-07', 'pao13', '6945637587', 'vaccines manager');
+(6, 'VenegroM', 'George', 'Nikolakopoulos', 'venogrom33@hotmail.com', '1999-05-12', 'venogrom', NULL, 'lab analyst'),
+(7, 'Bliaro', 'Vasilios', 'Liarommatis', 'bliaro13@yahoo.com', '1998-02-07', 'pao13', '6945637587', 'vaccines manager'),
+(8, 'pleve33', 'Leventis', 'Panagiotis', 'pleve98@gmail.com', '1998-04-21', 'pleve33', '69828384858', 'patient'),
+(34, 'pfiltis', 'Panagiotis', 'Filtisenios', 'pete.filtis@hotmail.com', '1999-04-05', 'pfiltis', '6988822415', 'reception'),
+(35, 'ioannagian', 'Ioanna', 'Giannakopoulou', 'ioannagian@gmail.com', '1999-09-14', 'ioannagian', '6982918283', 'lab analyst'),
+(36, 'mpalas', 'Giannis', 'Mpalasopoulos', 'giannismpalas@gmail.com', '1999-02-14', 'mpalas', '6988880023', 'doctor');
 
 -- --------------------------------------------------------
 
@@ -418,8 +442,8 @@ ALTER TABLE `patient`
 --
 ALTER TABLE `prescription`
   ADD PRIMARY KEY (`prescription_id`),
-  ADD KEY `patient_id` (`patient_id`),
-  ADD KEY `doctor_id` (`doctor_id`);
+  ADD KEY `prescription_ibfk_3` (`patient_id`),
+  ADD KEY `prescription_ibfk_4` (`doctor_id`);
 
 --
 -- Indexes for table `reception`
@@ -474,7 +498,7 @@ ALTER TABLE `visit`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `app_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `app_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `diagnosis`
@@ -486,25 +510,25 @@ ALTER TABLE `diagnosis`
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `order_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `order_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `prescription`
 --
 ALTER TABLE `prescription`
-  MODIFY `prescription_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `prescription_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `supplies`
 --
 ALTER TABLE `supplies`
-  MODIFY `supply_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `supply_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `user_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Constraints for dumped tables
