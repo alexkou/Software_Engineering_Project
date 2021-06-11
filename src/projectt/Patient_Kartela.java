@@ -45,7 +45,8 @@ public class Patient_Kartela extends javax.swing.JFrame {
             LogIn_Patient login_patient = new LogIn_Patient();
             Class.forName("com.mysql.cj.jdbc.Driver");
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-            String query1 = "SELECT prescription_id FROM prescription";
+            String patient_id = login_patient.patient_userId();
+            String query1 = "SELECT test_id FROM test_results WHERE patient_id = '"+patient_id+"'";
             PreparedStatement pst = con.prepareStatement(query1);
             ResultSet rs = pst.executeQuery();
               
@@ -78,7 +79,8 @@ public class Patient_Kartela extends javax.swing.JFrame {
             LogIn_Patient login_patient = new LogIn_Patient();
             Class.forName("com.mysql.cj.jdbc.Driver");
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-            String query2 = "SELECT diagnosis_id FROM diagnosis";
+            String patient_id = login_patient.patient_userId();
+            String query2 = "SELECT diagnosis_id FROM diagnosis WHERE patient_id = '"+patient_id+"'";
             PreparedStatement pst2 = con.prepareStatement(query2);
             ResultSet rs2 = pst2.executeQuery();
               

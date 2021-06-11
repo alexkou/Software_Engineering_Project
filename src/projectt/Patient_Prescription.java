@@ -37,7 +37,8 @@ public class Patient_Prescription extends javax.swing.JFrame {
             LogIn_Patient login_patient = new LogIn_Patient();
             Class.forName("com.mysql.cj.jdbc.Driver");
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-            String query1 = "SELECT prescription_id FROM prescription";
+            String patient_id = login_patient.patient_userId();
+            String query1 = "SELECT prescription_id FROM prescription WHERE patient_id = '"+patient_id+"'";
             PreparedStatement pst = con.prepareStatement(query1);
             ResultSet rs = pst.executeQuery();
               
