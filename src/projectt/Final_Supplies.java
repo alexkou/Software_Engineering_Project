@@ -337,16 +337,12 @@ public class Final_Supplies extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
-private void select_Send(){
+
+    private void displaySuccess(){
+        JOptionPane.showMessageDialog(this,("Επιτυχής Αποστολή!"));
+    }
     
-    //Αποστολή φόρμας σε Υπουργείο Υγείας
-}
-private void displaySuccess(){
-    JOptionPane.showMessageDialog(this,("Επιτυχής Αποστολή!"));
-}
-private void getSupplies(){
     
-}
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //Άδειασμα πεδίων μετά το πάτημα του κουμπιού αποστολή
@@ -361,11 +357,10 @@ private void getSupplies(){
         jTextField9.setText("");
         
         displaySuccess();
-        
-        
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
-private static void returnSupplies() {
+    
+    private static void returnSupplies() {
         try{
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
             String query = "SELECT price FROM supplies WHERE supply='maskes'";

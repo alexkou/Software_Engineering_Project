@@ -8,14 +8,9 @@ package projectt;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.time.LocalTime;
-import java.text.DateFormat; 
-import java.text.ParseException;
 import java.text.SimpleDateFormat; 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
@@ -98,9 +93,8 @@ public class Visit_Creation extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 413, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 438, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,66 +175,52 @@ public class Visit_Creation extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+   
+    private void createVisit() {
+        if (firstname.getText().trim().isEmpty() || lastname.getText().trim().isEmpty() || doctorname.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, ("Συμπληρώστε όλα τα πεδία"));
+        } else {
 
-        
-        if (firstname.getText().trim().isEmpty() || lastname.getText().trim().isEmpty() || doctorname.getText().trim().isEmpty()) 
-        {
-            JOptionPane.showMessageDialog(this,("Συμπληρώστε όλα τα πεδία"));
-        }
-        else{
-            try{
-                String firstName = firstname.getText();
-                String lastName = lastname.getText();
-                String doctorName = doctorname.getText();
-                
-                Date date = jDateChooser1.getDate();
-                DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-                String strDate = dateFormat.format(date);
-                
-                LocalTime time = timePicker1.getTime();
-                DateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
-                String strTime = timeFormat.format(time);
-                
-                String fullDate  = strDate + " " + strTime;
-                
-                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-                Date appdate = formatter.parse(fullDate);
-                
-                String apptype = "visit";
-                
-                try{
-                    
-                    Class.forName("com.mysql.cj.jdbc.Driver");
-                    java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-                    
-                    String query = "INSERT INTO appointment VALUES"
-                            + "(NULL,'SELECT user_id from user WHERE user.first_name = "+firstName+" && user.last_name = "+lastName+"' , '"+apptype+"', '"+appdate+"')";
-                    
-                    PreparedStatement pst = con.prepareStatement(query);
-                    pst.executeUpdate();
-                    
-                    
-                    JOptionPane.showMessageDialog(this, "Η εγγραφή ολοκληρώθηκε με επιτυχία!");
-                    this.setVisible(false);
-                    new LogIn_Patient().setVisible(true);
-                    
-                    
-                    con.close();
-                } catch(Exception e) {  
-                    JOptionPane.showMessageDialog(null,e);
-                    
-                }
-                
-                
-            } catch(ParseException ex) {
-                Logger.getLogger(Visit_Creation.class.getName()).log(Level.SEVERE,null,ex);  
+            String firstName = firstname.getText();
+            String lastName = lastname.getText();
+            String doctorName = doctorname.getText();
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String date = sdf.format(jDateChooser1.getDate());
+
+            LocalTime time = timePicker1.getTime();
+            String fullDate = date + " " + time + ":00";
+            System.out.println(" " + fullDate);
+
+            try {
+
+                java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
+
+                String query = "INSERT INTO appointment VALUES (NULL, (SELECT user_id FROM user WHERE last_name= '" + lastName + "') , 'visit', '" + fullDate + "' )";
+
+                PreparedStatement pst = con.prepareStatement(query);
+                pst.executeUpdate();
+
+                String query2 = "INSERT INTO visit VALUES ((SELECT last_insert_id()), (SELECT user_id FROM user WHERE last_name='" + doctorName + "')) ";
+                pst = con.prepareStatement(query2);
+                pst.executeUpdate();
+
+                JOptionPane.showMessageDialog(this, "Η εγγραφή ολοκληρώθηκε με επιτυχία!");
+                this.setVisible(false);
+                new Patient_App().setVisible(true);
+
+                con.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
 
             }
-
-
+        }
+    }
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        createVisit();
     }//GEN-LAST:event_jButton1ActionPerformed
-   }
+
     /**
      * @param args the command line arguments
      */
