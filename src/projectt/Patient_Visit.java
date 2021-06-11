@@ -54,11 +54,10 @@ public class Patient_Visit extends javax.swing.JFrame {
     
     private static void getVisits(){
         try{
-        LogIn_Patient login_patient = new LogIn_Patient();
+        
         Class.forName("com.mysql.cj.jdbc.Driver");
         java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-        String patient_id = login_patient.patient_userId();
-        String query1 = "SELECT app_id,app_type FROM appointment WHERE app_type = 'visit' AND patient_id = '"+patient_id+"'";
+        String query1 = "SELECT app_id,app_type FROM appointment WHERE app_type = 'visit'";
                 PreparedStatement pst = con.prepareStatement(query1);
                 ResultSet rs = pst.executeQuery();
                 while(rs.next())
@@ -78,11 +77,11 @@ public class Patient_Visit extends javax.swing.JFrame {
     
     private static void getTestApp(){
         try{
-        LogIn_Patient login_patient = new LogIn_Patient();
+        
         Class.forName("com.mysql.cj.jdbc.Driver");
         java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-        String patient_id = login_patient.patient_userId();
-        String sql = "SELECT app_id,app_type FROM appointment WHERE app_type = 'tests' AND patient_id = '"+patient_id+"' ";
+        
+        String sql = "SELECT app_id,app_type FROM appointment WHERE app_type = 'tests' ";
                 PreparedStatement pst = con.prepareStatement(sql);
                 ResultSet rs = pst.executeQuery();
                 while(rs.next())
@@ -103,11 +102,11 @@ public class Patient_Visit extends javax.swing.JFrame {
     private static void getVacAppointment()
     {
         try{
-        LogIn_Patient login_patient = new LogIn_Patient();
+        
         Class.forName("com.mysql.cj.jdbc.Driver");
         java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-        String patient_id = login_patient.patient_userId();
-        String sql = "SELECT app_id,app_type FROM appointment WHERE app_type = = 'covid_vaccine' AND patient_id = '"+patient_id+"' ";
+        
+        String sql = "SELECT app_id,app_type FROM appointment WHERE app_type = = 'covid_vaccine' ";
                 PreparedStatement pst = con.prepareStatement(sql);
                 ResultSet rs = pst.executeQuery();
                 while(rs.next())
