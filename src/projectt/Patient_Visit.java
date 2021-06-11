@@ -34,10 +34,7 @@ public class Patient_Visit extends javax.swing.JFrame {
     private static void getAppointment(){
         
         
-        if(((jCheckBox1.isSelected() == true) && (jCheckBox2.isSelected() == true))||((jCheckBox1.isSelected() == true) && (jCheckBox3.isSelected() == true))||((jCheckBox2.isSelected() == true) && (jCheckBox3.isSelected() == true))){
-            JOptionPane.showMessageDialog(null,"Διάλεξε ένα είδος ραντεβού!");
-        }
-        else{
+        
                 if(jCheckBox1.isSelected() == true){
                     getVisits();
                 }
@@ -48,7 +45,7 @@ public class Patient_Visit extends javax.swing.JFrame {
                     getVacAppointment();
                 }
            
-        }
+        
 
     }
     
