@@ -391,20 +391,18 @@ public class Admin_Staff extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void AddStaff(){
-        if (jTextField3.getText().isEmpty() || jTextField4.getText().isEmpty() || jTextField5.getText().isEmpty() || jTextField6.getText().isEmpty() || jTextField7.getText().isEmpty() || jTextField8.getText().isEmpty() || jTextField9.getText().isEmpty() || jTextField10.getText().isEmpty()) {
+        if (jTextField2.getText().isEmpty() || jTextField3.getText().isEmpty() || jTextField4.getText().isEmpty() || jTextField5.getText().isEmpty() || jTextField6.getText().isEmpty() || jTextField7.getText().isEmpty() || jTextField8.getText().isEmpty() || jTextField9.getText().isEmpty() || jTextField10.getText().isEmpty()) {
             displayFail();
         } else {
             try {
-                
+                int d = Integer.parseInt(jTextField2.getText().trim());
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "");
-                String query1 = "INSERT INTO user VALUES (NULL,'" + jTextField3.getText() + "','" + jTextField4.getText() + "','" + jTextField5.getText() + "','" + jTextField6.getText() + "','" + jTextField7.getText() + "','" + jTextField8.getText() + "','" + jTextField9.getText() + "','" + jTextField10.getText() + "')";
+                String query1 = "INSERT INTO user VALUES ('"+jTextField2.getText()+"','" + jTextField3.getText() + "','" + jTextField4.getText() + "','" + jTextField5.getText() + "','" + jTextField6.getText() + "','" + jTextField7.getText() + "','" + jTextField8.getText() + "','" + jTextField9.getText() + "','" + jTextField10.getText() + "')";
                 PreparedStatement pst = con.prepareStatement(query1);
                 int rs = pst.executeUpdate();
-                String query10 = "SELECT user_id FROM user WHERE username = "+ jTextField3.getText() +"";
-                int d = Integer.parseInt(query10);
-
-                if (jTextField10.getText().equals("doctor")) {
+                
+                 if (jTextField10.getText().equals("doctor")) {
                     String query2 = "INSERT INTO doctor VALUES ('" + d + "')";
                     PreparedStatement pst1 = con.prepareStatement(query2);
                     int rs1 = pst1.executeUpdate();
@@ -421,9 +419,11 @@ public class Admin_Staff extends javax.swing.JFrame {
                     PreparedStatement pst5 = con.prepareStatement(query5);
                     int rs5 = pst5.executeUpdate();
                 } else ;
+                
 
                 display_Success1();
                 
+                jTextField2.setText("");
                 jTextField3.setText("");
                 jTextField4.setText("");
                 jTextField5.setText("");
@@ -441,7 +441,7 @@ public class Admin_Staff extends javax.swing.JFrame {
             }
         }
     }
-
+       
     private void UpdateStaff() {
             if (jTextField2.getText().isEmpty() || jTextField3.getText().isEmpty() || jTextField4.getText().isEmpty() || jTextField5.getText().isEmpty() || jTextField6.getText().isEmpty() || jTextField7.getText().isEmpty() || jTextField8.getText().isEmpty() || jTextField9.getText().isEmpty() || jTextField10.getText().isEmpty()) {
                 displayFail();
